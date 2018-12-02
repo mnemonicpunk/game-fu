@@ -13,7 +13,7 @@ class mnRender {
 		var _render = function() {
 			_Instance.render();
 			window.requestAnimationFrame(_render);
-		}
+		};
 		_render();
 	}
 	setSize(w, h) {
@@ -73,25 +73,25 @@ class mnRender {
 			r: 0,
 			g: 0,
 			b: 0
-		}
+		};
 		if (key == "top-left") {
 			c = {
 				r: idata.data[0],
 				g: idata.data[1],
 				b: idata.data[2]
-			}
+			};
 		} else {
 			var components = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(key);
 			c = {
 				r: parseInt(components[1], 16),
 				g: parseInt(components[2], 16),
 				b: parseInt(components[3], 16),
-			}			
+			};		
 		}
 
 		for (var i=0; i<idata.data.length; i+=4) {
 			if ((idata.data[i] == c.r) && (idata.data[i+1] == c.g) && (idata.data[i+2] == c.b)) {
-				idata.data[i+3] = 9;
+				idata.data[i+3] = 0;
 				//console.dir("Pixel set to transparent");
 			}
 		}
@@ -139,7 +139,7 @@ class mnAnimation {
 				'height': 0,
 				'offset_x': 0,
 				'offset_y': 0
-			}
+			};
 		}
 
 		return this.frames[this.current_frame];

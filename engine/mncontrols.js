@@ -22,7 +22,7 @@ class mnControls {
 			'arrow_right': "ArrowRight",
 			'arrow_up': "ArrowUp",
 			'arrow_down': "ArrowDown"			
-		}
+		};
 	}
 	update() {
 		// move the current state over to the previous state
