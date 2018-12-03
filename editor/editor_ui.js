@@ -314,7 +314,6 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.image_url.setValue("");
 
         window.addEventListener('resize', function() {
-            console.dir(_Instance.edit_main_pane);
             _Instance.render.setSize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
             _Instance.img_sprite.x = _Instance.edit_main_pane.clientWidth / 2;
             _Instance.img_sprite.y = _Instance.edit_main_pane.clientHeight / 2;

@@ -65,4 +65,3 @@ class Language {
 }
 
 window.language = new Language();
-console.dir(language);

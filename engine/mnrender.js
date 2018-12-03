@@ -161,10 +161,6 @@ class mnStaticFullImage extends mnAnimation {
 	constructor(image) {
 		super(image);
 		this.addFrame(0, 0, this.image.width, this.image.height);
-
-		console.log("Image set to");
-		console.dir(this.getImage());
-		console.dir(this.getFrame());
 	}
 }
 
