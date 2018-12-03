@@ -351,7 +351,7 @@ class mnEditorUI extends mnWidget {
 
         pe.categories.objects.clear();
         for (var i=0; i<assets.objects.length; i++) {
-            var obj = assets.objects[i];
+            let obj = assets.objects[i];
             pe.categories.objects.addItem(obj.name, function () {
                 _Instance.editObject(obj);
             });
@@ -359,7 +359,7 @@ class mnEditorUI extends mnWidget {
 
         pe.categories.scenes.clear();
         for (var i=0; i<assets.scenes.length; i++) {
-            var scene = assets.scenes[i];
+            let scene = assets.scenes[i];
             pe.categories.scenes.addItem(scene.name, function () {
                 _Instance.editScene(scene);
             });
@@ -367,7 +367,7 @@ class mnEditorUI extends mnWidget {
 
         pe.categories.animations.clear();
         for (var i=0; i<assets.animations.length; i++) {
-            var anim = assets.animations[i];
+            let anim = assets.animations[i];
             pe.categories.animations.addItem(anim.name, function () {
                 _Instance.editAnimation(anim);
             });
@@ -375,7 +375,7 @@ class mnEditorUI extends mnWidget {
 
         pe.categories.images.clear();
         for (var i=0; i<assets.images.length; i++) {
-            var img = assets.images[i];
+            let img = assets.images[i];
             pe.categories.images.addItem(img.name, function () {
                 _Instance.editImage(img);
             });
