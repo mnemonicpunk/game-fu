@@ -182,24 +182,29 @@ class mnBasicEditor extends mnWidget {
     }
 }
 
-class mnObjectEditor extends mnBasicEditor {
+class mnSplitPaneEditor extends mnBasicEditor {
+    constructor() {
+        super();
+        this.edit_main_pane = document.createElement('div');
+        this.edit_main_pane.className = "edit_main_pane";
+        this.el.appendChild(this.edit_main_pane);
+
+        this.edit_properties_pane = document.createElement('div');
+        this.edit_properties_pane.className = "edit_properties_pane";
+        this.el.appendChild(this.edit_properties_pane);   
+    }
+}
+
+class mnObjectEditor extends mnSplitPaneEditor {
     constructor(obj) {
         super();
         this.obj = obj;
-
-        this.edit_object_code = document.createElement('div');
-        this.edit_object_code.className = "edit_main_pane";
-        this.el.appendChild(this.edit_object_code);
-
-        this.edit_object_properties = document.createElement('div');
-        this.edit_object_properties.className = "edit_properties_pane";
-        this.el.appendChild(this.edit_object_properties);
 
         // create the name textbox
         this.obj_name = new mnLabelledTextbox("Object Name", function(text) {
             console.log("Value changed to: " + text);
         });
-        this.edit_object_properties.appendChild(this.obj_name.el);
+        this.edit_properties_pane.appendChild(this.obj_name.el);
         this.obj_name.setValue(this.obj.name);
 
         // create the inheritance dropdown
@@ -211,7 +216,7 @@ class mnObjectEditor extends mnBasicEditor {
             var p = editor.assets.objects[i];
             this.obj_parent.addOption(p.name, p.name);
         }
-        this.edit_object_properties.appendChild(this.obj_parent.el);        
+        this.edit_properties_pane.appendChild(this.obj_parent.el);        
 
         // create the sprite dropdown
         this.obj_animation = new mnLabelledDropdown("Default Animation", function(anim) {
@@ -221,28 +226,20 @@ class mnObjectEditor extends mnBasicEditor {
             var anim = editor.assets.animations[i];
             this.obj_animation.addOption(anim.name, anim.name);
         }
-        this.edit_object_properties.appendChild(this.obj_animation.el);        
+        this.edit_properties_pane.appendChild(this.obj_animation.el);        
     }
 }
 
-class mnSceneEditor extends mnBasicEditor {
+class mnSceneEditor extends mnSplitPaneEditor {
     constructor(scene) {
         super();
         this.scene = scene;
-
-        this.edit_scene_layout = document.createElement('div');
-        this.edit_scene_layout.className = "edit_main_pane";
-        this.el.appendChild(this.edit_scene_layout);
-
-        this.edit_scene_properties = document.createElement('div');
-        this.edit_scene_properties.className = "edit_properties_pane";
-        this.el.appendChild(this.edit_scene_properties);
 
         // create the name textbox
         this.scene_name = new mnLabelledTextbox("Scene Name", function(text) {
             console.log("Value changed to: " + text);
         });
-        this.edit_scene_properties.appendChild(this.scene_name.el);
+        this.edit_properties_pane.appendChild(this.scene_name.el);
         this.scene_name.setValue(this.scene.name);
 
         // create the object selection dropdown
@@ -253,28 +250,20 @@ class mnSceneEditor extends mnBasicEditor {
             var p = editor.assets.objects[i];
             this.obj_selected.addOption(p.name, p.name);
         }
-        this.edit_scene_properties.appendChild(this.obj_selected.el);       
+        this.edit_properties_pane.appendChild(this.obj_selected.el);       
     }
 }
 
-class mnAnimationEditor extends mnBasicEditor {
+class mnAnimationEditor extends mnSplitPaneEditor {
     constructor(anim) {
         super();
         this.anim = anim;
-
-        this.edit_animation = document.createElement('div');
-        this.edit_animation.className = "edit_main_pane";
-        this.el.appendChild(this.edit_animation);
-
-        this.edit_animation_properties = document.createElement('div');
-        this.edit_animation_properties.className = "edit_properties_pane";
-        this.el.appendChild(this.edit_animation_properties);
 
         // create the name textbox
         this.animation_name = new mnLabelledTextbox("Animation Name", function(text) {
             console.log("Value changed to: " + text);
         });
-        this.edit_animation_properties.appendChild(this.animation_name.el);
+        this.edit_properties_pane.appendChild(this.animation_name.el);
         this.animation_name.setValue(this.anim.name);
 
         // create the image selection dropdown
@@ -285,35 +274,27 @@ class mnAnimationEditor extends mnBasicEditor {
             var img = editor.assets.images[i];
             this.image_selected.addOption(img.name, img.name);
         }
-        this.edit_animation_properties.appendChild(this.image_selected.el);       
+        this.edit_properties_pane.appendChild(this.image_selected.el);       
     }
 }
 
-class mnImageEditor extends mnBasicEditor {
+class mnImageEditor extends mnSplitPaneEditor {
     constructor(img) {
         super();
         this.img = img;
-
-        this.edit_image = document.createElement('div');
-        this.edit_image.className = "edit_main_pane";
-        this.el.appendChild(this.edit_image);
-
-        this.edit_image_properties = document.createElement('div');
-        this.edit_image_properties.className = "edit_properties_pane";
-        this.el.appendChild(this.edit_image_properties);
 
         // create the name textbox
         this.image_name = new mnLabelledTextbox("Image Name", function(text) {
             console.log("Value changed to: " + text);
         });
-        this.edit_image_properties.appendChild(this.image_name.el);
+        this.edit_properties_pane.appendChild(this.image_name.el);
         this.image_name.setValue(this.img.name);
 
         // create the url textbox
         this.image_url = new mnLabelledTextbox("Image URL", function(text) {
             console.log("Value changed to: " + text);
         });
-        this.edit_image_properties.appendChild(this.image_url.el);
+        this.edit_properties_pane.appendChild(this.image_url.el);
         this.image_url.setValue("");
 
     }
