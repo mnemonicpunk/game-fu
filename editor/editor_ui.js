@@ -222,7 +222,7 @@ class mnObjectEditor extends mnSplitPaneEditor {
         this.obj_animation = new mnLabelledDropdown(language.strings.default_animation, function(anim) {
             console.log("Value changed to: " + anim);
         });
-        for (var i=0; i<editor.assets.animations.length; i++) {
+        for (let i=0; i<editor.assets.animations.length; i++) {
             var anim = editor.assets.animations[i];
             this.obj_animation.addOption(anim.name, anim.name);
         }
@@ -281,7 +281,23 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 class mnImageEditor extends mnSplitPaneEditor {
     constructor(img) {
         super();
+
+        var _Instance = this;
+
         this.img = img;
+
+        this.canvas = document.createElement('canvas');
+        this.canvas.style = "width: 100%; height: 100%";
+        this.edit_main_pane.appendChild(this.canvas);
+        this.render = new mnRender(this.canvas);
+        this.render.createLayer('main');
+        this.render.setSize(this.edit_main_pane.width, this.edit_main_pane.height);
+
+        var temp_img = document.createElement('img');
+        temp_img.src = "https://pbs.twimg.com/media/BuEGY5gIQAAEuZd.png";
+
+        this.img_sprite = this.render.getLayer('main').createSprite();
+        this.img_sprite._animation = new mnStaticFullImage(temp_img);
 
         // create the name textbox
         this.image_name = new mnLabelledTextbox(language.strings.image_name, function(text) {
@@ -297,6 +313,12 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.edit_properties_pane.appendChild(this.image_url.el);
         this.image_url.setValue("");
 
+        window.addEventListener('resize', function() {
+            console.dir(_Instance.edit_main_pane);
+            _Instance.render.setSize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
+            _Instance.img_sprite.x = _Instance.edit_main_pane.clientWidth / 2;
+            _Instance.img_sprite.y = _Instance.edit_main_pane.clientHeight / 2;
+        });
     }
 }
 
@@ -313,6 +335,8 @@ class mnEditorView extends mnWidget {
 
         this.editor = editor;
         this.el.appendChild(this.editor.el);
+
+        window.dispatchEvent(new Event('resize'));
     }
 }
 
@@ -345,38 +369,37 @@ class mnEditorUI extends mnWidget {
         this.editor_view.setEditor(img_editor) ;
     }  
     updateProjectExplorer(assets) {
-        var _Instance = this;
-
-        var pe = this.project_explorer;
+        let _Instance = this;
+        let pe = this.project_explorer;
 
         pe.categories.objects.clear();
-        for (var i=0; i<assets.objects.length; i++) {
+        for (let i=0; i<assets.objects.length; i++) {
             let obj = assets.objects[i];
-            pe.categories.objects.addItem(obj.name, function () {
+            pe.categories.objects.addItem(obj.name, () => {
                 _Instance.editObject(obj);
             });
         }
 
         pe.categories.scenes.clear();
-        for (var i=0; i<assets.scenes.length; i++) {
+        for (let i=0; i<assets.scenes.length; i++) {
             let scene = assets.scenes[i];
-            pe.categories.scenes.addItem(scene.name, function () {
+            pe.categories.scenes.addItem(scene.name, () => {
                 _Instance.editScene(scene);
             });
         }
 
         pe.categories.animations.clear();
-        for (var i=0; i<assets.animations.length; i++) {
+        for (let i=0; i<assets.animations.length; i++) {
             let anim = assets.animations[i];
-            pe.categories.animations.addItem(anim.name, function () {
+            pe.categories.animations.addItem(anim.name, () => {
                 _Instance.editAnimation(anim);
             });
         }
 
         pe.categories.images.clear();
-        for (var i=0; i<assets.images.length; i++) {
+        for (let i=0; i<assets.images.length; i++) {
             let img = assets.images[i];
-            pe.categories.images.addItem(img.name, function () {
+            pe.categories.images.addItem(img.name, () => {
                 _Instance.editImage(img);
             });
         }
