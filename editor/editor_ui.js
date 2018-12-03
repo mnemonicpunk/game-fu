@@ -318,6 +318,30 @@ class mnImageEditor extends mnSplitPaneEditor {
             _Instance.img_sprite.x = _Instance.edit_main_pane.clientWidth / 2;
             _Instance.img_sprite.y = _Instance.edit_main_pane.clientHeight / 2;
         });
+
+        this.canvas.addEventListener('wheel', (e) => {
+            _Instance.wheelZoom(e.deltaY);
+        });
+    }
+    wheelZoom(deltaY) {
+        console.log(deltaY);
+        this.img_sprite.scale_x += deltaY * 0.01;
+        this.img_sprite.scale_y += deltaY * 0.01;
+
+        if (this.img_sprite.scale_x < 0.1) {
+            this.img_sprite.scale_x = 0.1;
+        }
+        if (this.img_sprite.scale_y < 0.1) {
+            this.img_sprite.scale_y = 0.1;
+        }
+        if (this.img_sprite.scale_x > 3) {
+            this.img_sprite.scale_x = 3;
+        }
+        if (this.img_sprite.scale_y > 3) {
+            this.img_sprite.scale_y = 3;
+        }
+
+
     }
 }
 
