@@ -66,7 +66,7 @@ body {
     color: #aaa;
 }
 
-.edit_object_code {
+.edit_main_pane {
     position: absolute;
     padding: 10px;
     margin: 10px;
@@ -76,7 +76,7 @@ body {
     background: #888;
 }
 
-.edit_object_properties {
+.edit_properties_pane {
     position: absolute;
     left: 70%;
     top: 0;
@@ -85,4 +85,38 @@ body {
     width: calc(30% - 40px);
     height: calc(100% - 40px);
     padding: 10px;
+}
+
+.labelled_textbox {
+    margin-bottom: 20px;
+}
+
+.labelled_textbox_label {
+    font-size: 150%;
+    color: #aaa;
+}
+
+.labelled_textbox_text {
+    color: #fff;
+    width: calc(100% - 20px);
+    background: #333;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.labelled_dropdown_label {
+    font-size: 150%;
+    color: #aaa;
+}
+
+.labelled_dropdown_select {
+    color: #fff;
+    width: calc(100% - 20px);
+    background: #333;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
 }
