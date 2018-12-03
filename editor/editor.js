@@ -64,7 +64,7 @@ class mnEditor {
 var editor = null;
 
 window.addEventListener('load', function() {
-    language.set('de');
+    language.set('en');
     editor = new mnEditor();
     document.body.appendChild(editor.ui.el);
     

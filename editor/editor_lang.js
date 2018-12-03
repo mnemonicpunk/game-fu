@@ -56,7 +56,7 @@ class Language {
         this.strings = new LanguageStrings();
     }
     set(lang) {
-        if (lang = "de") {
+        if (lang == "de") {
             this.strings = new LanguageStringsDE();
             return;
         }
