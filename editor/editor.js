@@ -4,25 +4,25 @@ class mnAsset {
     }
 }
 
-class mnObject extends mnAsset {
+class mnAssetObject extends mnAsset {
     constructor(name) {
         super(name);
     }
 }
 
-class mnScene extends mnAsset {
+class mnAssetScene extends mnAsset {
     constructor(name) {
         super(name);
     }
 }
 
-class mnAnimation extends mnAsset {
+class mnAssetAnimation extends mnAsset {
     constructor(name) {
         super(name);
     }
 }
 
-class mnImage extends mnAsset {
+class mnAssetImage extends mnAsset {
     constructor(name) {
         super(name);
     }
@@ -64,12 +64,13 @@ class mnEditor {
 var editor = null;
 
 window.addEventListener('load', function() {
+    language.set('de');
     editor = new mnEditor();
     document.body.appendChild(editor.ui.el);
     
-    editor.addObject(new mnObject("TestObject"));
-    editor.addScene(new mnScene("TestScene"));
-    editor.addAnimation(new mnAnimation("TestAnimation"));
-    editor.addAnimation(new mnAnimation("TestAnimation2"));
-    editor.addImage(new mnImage("TestImage"));
+    editor.addObject(new mnAssetObject("TestObject"));
+    editor.addScene(new mnAssetScene("TestScene"));
+    editor.addAnimation(new mnAssetAnimation("TestAnimation"));
+    editor.addAnimation(new mnAssetAnimation("TestAnimation2"));
+    editor.addImage(new mnAssetImage("TestImage"));
 });

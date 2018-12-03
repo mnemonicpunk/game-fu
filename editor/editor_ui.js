@@ -78,17 +78,17 @@ class mnProjectExplorer extends mnWidget {
         this.el.className = "project_explorer";
 
         this.categories = {
-            project: new mnProjectExplorerCategory("Project"),
-            objects: new mnProjectExplorerCategory("Objects"),
-            scenes: new mnProjectExplorerCategory("Scenes"),
-            animations: new mnProjectExplorerCategory("Animations"),
-            images: new mnProjectExplorerCategory("Images")        
+            project: new mnProjectExplorerCategory(language.strings.categories.project),
+            objects: new mnProjectExplorerCategory(language.strings.categories.objects),
+            scenes: new mnProjectExplorerCategory(language.strings.categories.scenes),
+            animations: new mnProjectExplorerCategory(language.strings.categories.animations),
+            images: new mnProjectExplorerCategory(language.strings.categories.images)        
         };
 
-        this.categories.project.addItem("General Properties", function() {
+        this.categories.project.addItem(language.strings.general_properties, function() {
             alert("Opening general properties");
         });
-        this.categories.project.addItem("Graphics Settings", {});
+        this.categories.project.addItem(language.strings.graphics_settings, {});
 
         for (var i in this.categories) {
             this.el.appendChild(this.categories[i].el);
@@ -201,17 +201,17 @@ class mnObjectEditor extends mnSplitPaneEditor {
         this.obj = obj;
 
         // create the name textbox
-        this.obj_name = new mnLabelledTextbox("Object Name", function(text) {
+        this.obj_name = new mnLabelledTextbox(language.strings.object_name, function(text) {
             console.log("Value changed to: " + text);
         });
         this.edit_properties_pane.appendChild(this.obj_name.el);
         this.obj_name.setValue(this.obj.name);
 
         // create the inheritance dropdown
-        this.obj_parent = new mnLabelledDropdown("Parent Object", function(p) {
+        this.obj_parent = new mnLabelledDropdown(language.strings.parent_object, function(p) {
             console.log("Value changed to: " + p);
         });
-        this.obj_parent.addOption("[no parent]", "none");
+        this.obj_parent.addOption(language.strings.no_parent, "none");
         for (var i=0; i<editor.assets.objects.length; i++) {
             var p = editor.assets.objects[i];
             this.obj_parent.addOption(p.name, p.name);
@@ -219,7 +219,7 @@ class mnObjectEditor extends mnSplitPaneEditor {
         this.edit_properties_pane.appendChild(this.obj_parent.el);        
 
         // create the sprite dropdown
-        this.obj_animation = new mnLabelledDropdown("Default Animation", function(anim) {
+        this.obj_animation = new mnLabelledDropdown(language.strings.default_animation, function(anim) {
             console.log("Value changed to: " + anim);
         });
         for (var i=0; i<editor.assets.animations.length; i++) {
@@ -236,14 +236,14 @@ class mnSceneEditor extends mnSplitPaneEditor {
         this.scene = scene;
 
         // create the name textbox
-        this.scene_name = new mnLabelledTextbox("Scene Name", function(text) {
+        this.scene_name = new mnLabelledTextbox(language.strings.scene_name, function(text) {
             console.log("Value changed to: " + text);
         });
         this.edit_properties_pane.appendChild(this.scene_name.el);
         this.scene_name.setValue(this.scene.name);
 
         // create the object selection dropdown
-        this.obj_selected = new mnLabelledDropdown("Selected Object", function(p) {
+        this.obj_selected = new mnLabelledDropdown(language.strings.selected_object, function(p) {
             console.log("Value changed to: " + p);
         });
         for (var i=0; i<editor.assets.objects.length; i++) {
@@ -260,14 +260,14 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.anim = anim;
 
         // create the name textbox
-        this.animation_name = new mnLabelledTextbox("Animation Name", function(text) {
+        this.animation_name = new mnLabelledTextbox(language.strings.animation_name, function(text) {
             console.log("Value changed to: " + text);
         });
         this.edit_properties_pane.appendChild(this.animation_name.el);
         this.animation_name.setValue(this.anim.name);
 
         // create the image selection dropdown
-        this.image_selected = new mnLabelledDropdown("Using Image", function(p) {
+        this.image_selected = new mnLabelledDropdown(language.strings.using_image, function(p) {
             console.log("Value changed to: " + p);
         });
         for (var i=0; i<editor.assets.images.length; i++) {
@@ -284,14 +284,14 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.img = img;
 
         // create the name textbox
-        this.image_name = new mnLabelledTextbox("Image Name", function(text) {
+        this.image_name = new mnLabelledTextbox(language.strings.image_name, function(text) {
             console.log("Value changed to: " + text);
         });
         this.edit_properties_pane.appendChild(this.image_name.el);
         this.image_name.setValue(this.img.name);
 
         // create the url textbox
-        this.image_url = new mnLabelledTextbox("Image URL", function(text) {
+        this.image_url = new mnLabelledTextbox(language.strings.image_url, function(text) {
             console.log("Value changed to: " + text);
         });
         this.edit_properties_pane.appendChild(this.image_url.el);
