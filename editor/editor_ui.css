@@ -12,6 +12,9 @@ body {
 }
 
 .project_explorer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
     width: 300px;
     height: 100%;
     color: #aaa;
@@ -23,29 +26,63 @@ body {
 }
 
 .project_explorer_category_name {
-    padding: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 10px;
+    //margin-left: 10px;
+    //margin-right: 10px;
 }
 
 .project_explorer_category_name:hover {
     cursor: pointer;
+    background: #555;
 }
 
 .project_explorer_category_content {
     padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 1px solid #000;
     background: #888;
     color: #fff;
 }
 
 .project_explorer_item {
-    padding: 5px;
+    padding: 10px;
     
 }
 
 .project_explorer_item:hover {
     cursor: pointer;
-    text-decoration: underline;
+    background: #555;
+    border-radius: 5px;
+}
+
+.editor_view {
+    position: absolute;
+    top: 0px;
+    left: 300px;
+    width: calc(100% - 300px);
+    height: 100%;
+
+    color: #aaa;
+}
+
+.edit_object_code {
+    position: absolute;
+    padding: 10px;
+    margin: 10px;
+    width: calc(70% - 40px);
+    height: calc(100% - 40px);
+    padding: 10px;
+    background: #888;
+}
+
+.edit_object_properties {
+    position: absolute;
+    left: 70%;
+    top: 0;
+    padding: 10px;
+    margin: 10px;
+    width: calc(30% - 40px);
+    height: calc(100% - 40px);
+    padding: 10px;
 }

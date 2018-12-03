@@ -51,12 +51,12 @@ class mnProjectExplorerCategory extends mnWidget {
         this.state = !this.state;
         this.update();
     }
-    addItem(item) {
-        this.items.push(item);
-        this.update();
+    clear() {
+        this.items = [];
     }
-    setItems(items) {
-        this.items = items;
+    addItem(name, handler) {
+        var item = new mnProjectExplorerItem(name, handler);
+        this.items.push(item);
     }
     update() {
         this.content.style = this.state?"":"display: none;";
@@ -85,10 +85,10 @@ class mnProjectExplorer extends mnWidget {
             images: new mnProjectExplorerCategory("Images")        
         };
 
-        this.categories.project.addItem(new mnProjectExplorerItem("General Properties", function() {
+        this.categories.project.addItem("General Properties", function() {
             alert("Opening general properties");
-        }));
-        this.categories.project.addItem(new mnProjectExplorerItem("Graphics Settings", {}));
+        });
+        this.categories.project.addItem("Graphics Settings", {});
 
         for (var i in this.categories) {
             this.el.appendChild(this.categories[i].el);
@@ -107,6 +107,54 @@ class mnProjectExplorer extends mnWidget {
             this.el.appendChild(this.categories[i].el);
         }
     }
+    update() {
+        for (var i=0; i<this.categories.length; i++) {
+            this.categories[i].update();
+        }
+    }
+}
+
+class mnBasicEditor extends mnWidget {
+    constructor() {
+        super();
+        this.el = document.createElement('div');
+        this.el.className = "editor";
+    }
+}
+
+class mnObjectEditor extends mnBasicEditor {
+    constructor(obj) {
+        super();
+        this.obj = obj;
+
+        console.log("now editing");
+        console.dir(this.obj);
+
+        this.edit_object_code = document.createElement('div');
+        this.edit_object_code.className = "edit_object_code";
+        this.el.appendChild(this.edit_object_code);
+
+        this.edit_object_properties = document.createElement('div');
+        this.edit_object_properties.className = "edit_object_properties";
+        this.el.appendChild(this.edit_object_properties);
+        this.edit_object_properties.innerHTML = "Object Name";
+    }
+}
+
+class mnEditorView extends mnWidget {
+    constructor() {
+        super();
+        this.el = document.createElement('div');
+        this.el.className = "editor_view";
+    }
+    setEditor(editor) {
+        while (this.el.hasChildNodes()) {
+            this.el.removeChild(this.el.firstChild);
+        }
+
+        this.editor = editor;
+        this.el.appendChild(this.editor.el);
+    }
 }
 
 class mnEditorUI extends mnWidget {
@@ -117,5 +165,12 @@ class mnEditorUI extends mnWidget {
 
         this.project_explorer = new mnProjectExplorer();
         this.el.appendChild(this.project_explorer.el);
+
+        this.editor_view = new mnEditorView();
+        this.el.appendChild(this.editor_view.el);
+    }
+    editObject(obj) {
+        var obj_editor = new mnObjectEditor(obj);
+        this.editor_view.setEditor(obj_editor) ;
     }
 }
