@@ -236,6 +236,9 @@ class mnObjectEditor extends mnSplitPaneEditor {
         super();
         this.obj = obj;
 
+        let object_assets = editor.getAssets('objects');
+        let animation_assets = editor.getAssets('animations');
+
         // create the name textbox
         this.obj_name = new mnLabelledTextbox(language.strings.object_name, function(text) {
             console.log("Value changed to: " + text);
@@ -248,8 +251,9 @@ class mnObjectEditor extends mnSplitPaneEditor {
             console.log("Value changed to: " + p);
         });
         this.obj_parent.addOption(language.strings.no_parent, "none");
-        for (var i=0; i<editor.assets.objects.length; i++) {
-            var p = editor.assets.objects[i];
+        
+        for (let i=0; i<object_assets.length; i++) {
+            let p = object_assets[i];
             this.obj_parent.addOption(p.name, p.name);
         }
         this.edit_properties_pane.appendChild(this.obj_parent.el);        
@@ -258,8 +262,8 @@ class mnObjectEditor extends mnSplitPaneEditor {
         this.obj_animation = new mnLabelledDropdown(language.strings.default_animation, function(anim) {
             console.log("Value changed to: " + anim);
         });
-        for (let i=0; i<editor.assets.animations.length; i++) {
-            var anim = editor.assets.animations[i];
+        for (let i=0; i<animation_assets.length; i++) {
+            let anim = animation_assets[i];
             this.obj_animation.addOption(anim.name, anim.name);
         }
         this.edit_properties_pane.appendChild(this.obj_animation.el);        
@@ -270,6 +274,8 @@ class mnSceneEditor extends mnSplitPaneEditor {
     constructor(scene) {
         super();
         this.scene = scene;
+
+        let object_assets = editor.getAssets('objects');
 
         // create the name textbox
         this.scene_name = new mnLabelledTextbox(language.strings.scene_name, function(text) {
@@ -282,8 +288,8 @@ class mnSceneEditor extends mnSplitPaneEditor {
         this.obj_selected = new mnLabelledDropdown(language.strings.selected_object, function(p) {
             console.log("Value changed to: " + p);
         });
-        for (var i=0; i<editor.assets.objects.length; i++) {
-            var p = editor.assets.objects[i];
+        for (let i=0; i<object_assets.length; i++) {
+            let p = object_assets[i];
             this.obj_selected.addOption(p.name, p.name);
         }
         this.edit_properties_pane.appendChild(this.obj_selected.el);       
@@ -294,6 +300,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
     constructor(anim) {
         super();
         this.anim = anim;
+
+        let image_assets = editor.getAssets('images');
 
         // create the name textbox
         this.animation_name = new mnLabelledTextbox(language.strings.animation_name, function(text) {
@@ -306,8 +314,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.image_selected = new mnLabelledDropdown(language.strings.using_image, function(p) {
             console.log("Value changed to: " + p);
         });
-        for (var i=0; i<editor.assets.images.length; i++) {
-            var img = editor.assets.images[i];
+        for (let i=0; i<image_assets.length; i++) {
+            let img = image_assets[i];
             this.image_selected.addOption(img.name, img.name);
         }
         this.edit_properties_pane.appendChild(this.image_selected.el);       
