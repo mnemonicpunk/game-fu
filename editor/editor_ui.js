@@ -5,6 +5,37 @@ class mnWidget {
     }
 }
 
+class mnIdentityWIdget extends mnWidget {
+    constructor() {
+        super();
+        this.el.className = 'identity_widget';
+
+        this.user_portrait = document.createElement('div');
+        this.user_portrait.className = 'idw_user_portrait';
+
+        this.user_portrait_image = document.createElement('img');
+        this.user_portrait_image.className = 'idw_user_portrait_image';
+        this.user_portrait_image.src = "editor/anon_icon.png";
+        this.user_portrait.appendChild(this.user_portrait_image);
+
+        this.user_badge = document.createElement('div');
+        this.user_badge.className = 'idw_user_badge';
+
+        this.user_name = document.createElement('div');
+        this.user_name.className = 'idw_user_name';
+        this.user_name.innerHTML = "Guest";
+        this.user_badge.appendChild(this.user_name);
+
+        this.project_name = document.createElement('div');
+        this.project_name.className = 'idw_project_name';
+        this.project_name.innerHTML = "Test Project";
+
+        this.el.appendChild(this.user_portrait);
+        this.el.appendChild(this.user_badge);
+        this.el.appendChild(this.project_name);
+    }
+}
+
 class mnProjectExplorerItem extends mnWidget {
     constructor(name, handler) {
         super();
@@ -77,6 +108,9 @@ class mnProjectExplorer extends mnWidget {
         this.el = document.createElement('div');
         this.el.className = "project_explorer";
 
+        this.identity_widget = new mnIdentityWIdget();
+        this.el.appendChild(this.identity_widget.el);
+
         this.categories = {
             project: new mnProjectExplorerCategory(language.strings.categories.project),
             objects: new mnProjectExplorerCategory(language.strings.categories.objects),
@@ -102,6 +136,8 @@ class mnProjectExplorer extends mnWidget {
         while (this.el.hasChildNodes()) {
             this.el.removeChild(this.el.firstChild);
         }
+
+        this.el.appendChild(this.identity_widget.el);
 
         for (var i=0; i<this.categories.length; i++) {
             this.el.appendChild(this.categories[i].el);
@@ -368,7 +404,7 @@ class mnEditorUI extends mnWidget {
         super();
         this.el = document.createElement('div');
         this.el.className = "editor_ui";
-
+    
         this.project_explorer = new mnProjectExplorer();
         this.el.appendChild(this.project_explorer.el);
 

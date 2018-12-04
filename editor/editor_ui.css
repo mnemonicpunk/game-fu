@@ -11,6 +11,56 @@ body {
     background: #222;
 }
 
+.identity_widget {
+    width: 100%;
+    height: 80px;
+}
+
+.idw_user_portrait {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 80px;
+    height: 80px;
+    background: #555;
+    border-radius: 8px;
+    border-top-right-radius: 0px;
+}
+
+.idw_user_portrait_image {
+    margin: 8px;
+    width: 64px;
+    height: 64px;
+    background: #fff;
+    border-radius: 8px;
+    border: none;
+}
+
+.idw_user_badge {
+    position: absolute;
+    top: 0px;
+    left: 80px;    
+    width: calc(100% - 80px);
+    height: 40px;
+    background: #555;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.idw_user_name {
+    line-height: 40px;
+    margin-left: 10px;
+    color: #ddd;
+}
+
+.idw_project_name {
+    position: absolute;
+    top: 40px;
+    left: 80px;    
+    line-height: 40px;
+    padding-left: 10px;
+}
+
 .project_explorer {
     position: absolute;
     top: 0px;
@@ -29,8 +79,6 @@ body {
 
 .project_explorer_category_name {
     padding: 10px;
-    //margin-left: 10px;
-    //margin-right: 10px;
 }
 
 .project_explorer_category_name:hover {
