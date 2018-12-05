@@ -147,6 +147,7 @@ body {
 
 .labeled_textbox {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .labeled_textbox_label {
@@ -177,4 +178,77 @@ body {
     margin-top: 10px;
     border: none;
     border-radius: 5px;
+}
+
+.seek_widget {
+    margin-top: 45px;
+    width: 100%;
+}
+
+.seek_button {
+    width: 45px;
+    height: 45px;
+    
+    text-align: center;
+    line-height: 45px;
+    background: #444;
+    color: #000;
+}
+
+.seek_button:hover {
+    cursor: pointer;
+}
+
+.seek_button_left {
+    border-top-left-radius: 45px;
+    border-bottom-left-radius: 45px;
+
+    position: relative;
+    left: -45px;
+
+}
+
+.seek_button_right {
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 45px;
+
+    position: relative;
+    left: 45px;
+    top: -45px;
+}
+
+.seek_bar {
+    width: calc(100% - 135px);
+    padding-left: 60px;
+    padding-right: 60px;
+    height: 45px;
+    background: #333;
+
+    border-radius: 45px;
+ 
+}
+
+.seek_tag {
+    width: 45px;
+    height: 45px;
+    position: relative;
+    background: #444;
+    color: #fff;
+    line-height: 45px;
+    text-align: center;
+    transition: left 0.2s;
+}
+
+.seek_text {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+
+    position: relative;
+    top: -80px;
+    left: 8px;
+
+    border-radius: 30px;
+    background: #333;
 }

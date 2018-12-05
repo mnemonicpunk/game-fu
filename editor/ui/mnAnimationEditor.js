@@ -20,6 +20,12 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             let img = image_assets[i];
             this.image_selected.addOption(img.name, img.name);
         }
-        this.edit_properties_pane.appendChild(this.image_selected.el);       
+        this.edit_properties_pane.appendChild(this.image_selected.el); 
+        
+        this.seek_widget = new mnSeekWidget();
+        this.seek_widget.setPosition(0);
+        this.seek_widget.setMaxPosition(19);
+
+        this.edit_properties_pane.appendChild(this.seek_widget.el);
     }
 }
