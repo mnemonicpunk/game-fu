@@ -145,16 +145,16 @@ body {
     padding: 10px;
 }
 
-.labelled_textbox {
+.labeled_textbox {
     margin-bottom: 20px;
 }
 
-.labelled_textbox_label {
+.labeled_textbox_label {
     font-size: 150%;
     color: #aaa;
 }
 
-.labelled_textbox_text {
+.labeled_textbox_text {
     color: #fff;
     width: calc(100% - 20px);
     background: #333;
@@ -164,12 +164,12 @@ body {
     border-radius: 5px;
 }
 
-.labelled_dropdown_label {
+.labeled_dropdown_label {
     font-size: 150%;
     color: #aaa;
 }
 
-.labelled_dropdown_select {
+.labeled_dropdown_select {
     color: #fff;
     width: calc(100% - 20px);
     background: #333;
