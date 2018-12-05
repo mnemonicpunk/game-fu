@@ -51,14 +51,22 @@ body {
     line-height: 40px;
     margin-left: 10px;
     color: #ddd;
+    
 }
 
 .idw_project_name {
     position: absolute;
     top: 40px;
-    left: 80px;    
+    left: 80px;
+    width: calc(100% - 90px);
     line-height: 40px;
     padding-left: 10px;
+}
+
+.idw_project_name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    background: #444;
 }
 
 .project_explorer {
