@@ -187,6 +187,8 @@ body {
 }
 
 .seek_slider {
+    margin-top: 20px;
+
     -webkit-appearance: none;
     appearance: none;
     outline: none;
@@ -195,7 +197,7 @@ body {
     background: #333;
     border: 1px solid #444;
     
-    border-radius: 20px;
+    border-radius: 45px;
 }
 
 .seek_slider::-webkit-slider-thumb {
@@ -206,7 +208,7 @@ body {
     height: 45px;
     background: #555;
 
-    border-radius: 20px;
+    border-radius: 45px;
 }
 
 .view_selector {

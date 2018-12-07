@@ -78,6 +78,11 @@ class mnSeekWidget extends mnWidget {
         this.el.className ="seek_widget";
         this.pos = 0;
         this.max_pos = 0;
+
+        this.label = document.createElement('div');
+        this.label.className = 'labeled_textbox_label';
+        this.label.innerHTML = this.title;
+        this.el.appendChild(this.label);
         
         this.slider = document.createElement('input');
         this.slider.className = 'seek_slider';
@@ -88,9 +93,15 @@ class mnSeekWidget extends mnWidget {
         this.el.appendChild(this.slider);
 
         this.slider.addEventListener('change', function(e) {
-            _Instance.pos = _Instance.slider.value;
+            _Instance.setPosition(_Instance.slider.value);
             console.log(_Instance.pos);
         });
+        this.slider.addEventListener('input', function(e) {
+            _Instance.setPosition(_Instance.slider.value);
+            console.log(_Instance.pos);
+        });
+
+        this.setPosition(0);
     }
     changePosition(change) {
         var pos = this.pos;
@@ -102,9 +113,13 @@ class mnSeekWidget extends mnWidget {
     setPosition(pos) {
         this.pos = pos;
         this.slider.value = this.pos;
+
+        this.label.innerHTML = language.strings.current_frame + ": " + this.pos + "/" + this.max_pos;
     }
     setMaxPosition(pos) {
         this.max_pos = pos;
         this.slider.max = this.max_pos;
+
+        this.setPosition(this.pos);
     }
 }

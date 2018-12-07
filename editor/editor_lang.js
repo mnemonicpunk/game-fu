@@ -21,6 +21,8 @@ class LanguageStrings {
         this.selected_object = 'Selected Object';
         this.using_image = 'Using Image';
         this.image_url = 'Image URL';
+
+        this.current_frame = "Current Frame";
     }
 }
 
