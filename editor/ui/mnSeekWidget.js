@@ -1,5 +1,5 @@
 class mnSeekWidget extends mnWidget {
-    constructor() {
+    /*constructor() {
         super();
         var _Instance = this;
 
@@ -69,5 +69,42 @@ class mnSeekWidget extends mnWidget {
     }
     setMaxPosition(pos) {
         this.max_pos = pos;
+    }*/
+    constructor() {
+        super();
+
+        var _Instance = this;
+
+        this.el.className ="seek_widget";
+        this.pos = 0;
+        this.max_pos = 0;
+        
+        this.slider = document.createElement('input');
+        this.slider.className = 'seek_slider';
+        this.slider.type = 'range';
+        this.slider.min = 0;
+        this.slider.max = 0;
+        this.slider.value = 0;
+        this.el.appendChild(this.slider);
+
+        this.slider.addEventListener('change', function(e) {
+            _Instance.pos = _Instance.slider.value;
+            console.log(_Instance.pos);
+        });
+    }
+    changePosition(change) {
+        var pos = this.pos;
+        pos += change;
+        if (pos < 0) { pos = 0; }
+        if (pos > this.max_pos) { pos = this.max_pos; }
+        this.setPosition(pos);
+    }
+    setPosition(pos) {
+        this.pos = pos;
+        this.slider.value = this.pos;
+    }
+    setMaxPosition(pos) {
+        this.max_pos = pos;
+        this.slider.max = this.max_pos;
     }
 }
