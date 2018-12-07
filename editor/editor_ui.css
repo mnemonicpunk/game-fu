@@ -181,8 +181,9 @@ body {
 }
 
 .seek_widget {
-    margin-top: 45px;
+    margin-top: 25px;
     width: 100%;
+    margin-bottom: 45px;
 }
 
 .seek_slider {
@@ -206,4 +207,12 @@ body {
     background: #555;
 
     border-radius: 20px;
+}
+
+.view_selector {
+    width: 100%;
+}
+
+.vs_canvas {
+    background: #000;
 }
