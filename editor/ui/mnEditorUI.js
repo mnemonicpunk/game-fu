@@ -4,7 +4,7 @@ class mnEditorUI extends mnWidget {
         this.el = document.createElement('div');
         this.el.className = "editor_ui";
     
-        this.project_explorer = new mnProjectExplorer();
+        this.project_explorer = new mnProjectExplorer(this);
         this.el.appendChild(this.project_explorer.el);
 
         this.editor_view = new mnEditorView();
@@ -25,7 +25,10 @@ class mnEditorUI extends mnWidget {
     editImage(img) {
         var img_editor = new mnImageEditor(img);
         this.editor_view.setEditor(img_editor) ;
-    }  
+    }
+    createNewImage() {
+        alert("You want to create a new image!");
+    }
     updateProjectExplorer(assets) {
         let _Instance = this;
         let pe = this.project_explorer;

@@ -1,6 +1,10 @@
 class mnProjectExplorer extends mnWidget {
-    constructor() {
+    constructor(editor) {
         super();
+
+        // not sure if we actually need to save this reference
+        this.editor = editor;
+
         this.el = document.createElement('div');
         this.el.className = "project_explorer";
 
@@ -8,11 +12,13 @@ class mnProjectExplorer extends mnWidget {
         this.el.appendChild(this.identity_widget.el);
 
         this.categories = {
-            project: new mnProjectExplorerCategory(language.strings.categories.project),
-            objects: new mnProjectExplorerCategory(language.strings.categories.objects),
-            scenes: new mnProjectExplorerCategory(language.strings.categories.scenes),
-            animations: new mnProjectExplorerCategory(language.strings.categories.animations),
-            images: new mnProjectExplorerCategory(language.strings.categories.images)        
+            project: new mnProjectExplorerCategory(language.strings.categories.project, null),
+            objects: new mnProjectExplorerCategory(language.strings.categories.objects, null),
+            scenes: new mnProjectExplorerCategory(language.strings.categories.scenes, null),
+            animations: new mnProjectExplorerCategory(language.strings.categories.animations, null),
+            images: new mnProjectExplorerCategory(language.strings.categories.images, function() {
+                editor.createNewImage();
+            })        
         };
 
         this.categories.project.addItem(language.strings.general_properties, function() {

@@ -1,5 +1,5 @@
 class mnProjectExplorerCategory extends mnWidget {
-    constructor(name) {
+    constructor(name, plus_handler) {
         super();
 
         var _Instance = this;
@@ -9,12 +9,25 @@ class mnProjectExplorerCategory extends mnWidget {
         this.category_name = name;
         this.el = document.createElement('div');
         this.el.className = "project_explorer_category";
-        //this.el.innerHTML = this.name;
 
         this.name = document.createElement('div');
         this.name.className = "project_explorer_category_name";
         this.name.innerHTML = this.category_name;
         this.el.appendChild(this.name);
+
+        this.category_add = document.createElement('div');
+        this.category_add.className = 'project_explorer_no_plus_button';
+        this.category_add.innerHTML = "+";
+        this.name.appendChild(this.category_add);
+
+        // for categories with a handler show a clickable plus button
+        if (plus_handler != null) {
+            this.category_add.className = 'project_explorer_plus_button';
+            this.category_add.addEventListener('click', function(e) {
+                plus_handler();
+                e.stopPropagation();
+            });
+        }
 
         this.content = document.createElement('div');
         this.content.className = "project_explorer_category_content";

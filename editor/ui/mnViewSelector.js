@@ -8,7 +8,7 @@ class mnViewSelector extends mnWidget {
             h: 0,
             x: 0,
             y: 0
-        }
+        };
         
         this.el.className = 'view_selector';
 

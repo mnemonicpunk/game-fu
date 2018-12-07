@@ -87,11 +87,32 @@ body {
 
 .project_explorer_category_name {
     padding: 10px;
+    height: 30px;
+    line-height: 30px;
 }
 
 .project_explorer_category_name:hover {
     cursor: pointer;
     background: #555;
+}
+
+.project_explorer_no_plus_button {
+    display: none;
+}
+
+.project_explorer_plus_button {
+    float: right;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 30px;
+}
+
+.project_explorer_plus_button:hover {
+    
 }
 
 .project_explorer_category_content {
