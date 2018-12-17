@@ -106,13 +106,17 @@ body {
     height: 30px;
     text-align: center;
 
+    padding-top: 10px;
+    padding-bottom: 10px;
+
     font-weight: bold;
     line-height: 30px;
-    border-radius: 30px;
+
+    color: #666;
 }
 
 .project_explorer_plus_button:hover {
-    
+    color: #fff;
 }
 
 .project_explorer_category_content {
@@ -164,6 +168,25 @@ body {
     width: calc(30% - 40px);
     height: calc(100% - 40px);
     padding: 10px;
+}
+
+.savedel_bar {
+    height: 44px;
+    margin-bottom: 40px;
+}
+
+.savedel_bar_button {
+    display: inline-block;
+    width: calc(50% - 40px);
+    height: 44px;
+    background: #555;
+    color: #fff;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 5px;
+
+    padding: 5px;
+    margin: 10px;
 }
 
 .labeled_textbox {

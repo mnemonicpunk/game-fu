@@ -17,7 +17,7 @@ class mnProjectExplorerCategory extends mnWidget {
 
         this.category_add = document.createElement('div');
         this.category_add.className = 'project_explorer_no_plus_button';
-        this.category_add.innerHTML = "+";
+        this.category_add.innerHTML = "<i class=\"fas fa-plus-circle\"></i>";
         this.name.appendChild(this.category_add);
 
         // for categories with a handler show a clickable plus button

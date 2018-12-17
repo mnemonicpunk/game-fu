@@ -19,6 +19,10 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.img_sprite = this.render.getLayer('main').createSprite();
         this.img_sprite._animation = new mnStaticFullImage(temp_img);
 
+        // add the delete/save toolstrip
+        this.savedel = new mnSaveDelBar();
+        this.edit_properties_pane.appendChild(this.savedel.el);
+
         // create the name textbox
         this.image_name = new mnLabeledTextbox(language.strings.image_name, function(text) {
             console.log("Value changed to: " + text);

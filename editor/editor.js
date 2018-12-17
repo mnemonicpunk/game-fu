@@ -1,7 +1,7 @@
 var editor = null;
 
 window.addEventListener('load', function() {
-    language.set('en');
+    language.set('de');
     editor = new mnEditor();
     document.body.appendChild(editor.ui.el);
 

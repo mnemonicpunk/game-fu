@@ -23,6 +23,9 @@ class LanguageStrings {
         this.image_url = 'Image URL';
 
         this.current_frame = "Current Frame";
+
+        this.save = "Save";
+        this.delete = "Delete";
     }
 }
 
@@ -32,7 +35,7 @@ class LanguageStringsDE extends LanguageStrings {
         this.categories = {
             project: 'Projekt',
             objects: 'Objekte',
-            scenes: 'Szenem',
+            scenes: 'Szenen',
             animations: 'Animationen',
             images: 'Bilder'
         };
@@ -50,6 +53,11 @@ class LanguageStringsDE extends LanguageStrings {
         this.selected_object = 'Gew&auml;hltes Objekt';
         this.using_image = 'Benutztes Bild';
         this.image_url = 'Bild URL';
+
+        this.current_frame = "Aktueller Frame";
+
+        this.save = "Speichern";
+        this.delete = "L&ouml;schen";
     }
 }
 
