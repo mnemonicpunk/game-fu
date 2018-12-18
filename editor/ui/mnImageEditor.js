@@ -47,6 +47,12 @@ class mnImageEditor extends mnSplitPaneEditor {
             _Instance.wheelZoom(e.deltaY);
         });
     }
+    onBlur(new_destination) {
+        // if we have unsaved changes, display a confirmation dialog
+        // we always have unsaved changes for testing purposes
+        var sdd = new mnSaveDiscardDialog(this, new_destination);
+        return sdd;
+    }
     wheelZoom(deltaY) {
         console.log(deltaY);
         this.img_sprite.scale_x += deltaY * 0.01;

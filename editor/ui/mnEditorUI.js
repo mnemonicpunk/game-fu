@@ -10,21 +10,24 @@ class mnEditorUI extends mnWidget {
         this.editor_view = new mnEditorView();
         this.el.appendChild(this.editor_view.el);
     }
+    setEditor(e) {
+        this.editor_view.setEditor(e);
+    }
     editObject(obj) {
         var obj_editor = new mnObjectEditor(obj);
-        this.editor_view.setEditor(obj_editor) ;
+        this.setEditor(obj_editor) ;
     }
     editScene(scene) {
         var scene_editor = new mnSceneEditor(scene);
-        this.editor_view.setEditor(scene_editor) ;
+        this.setEditor(scene_editor) ;
     }
     editAnimation(anim) {
         var anim_editor = new mnAnimationEditor(anim);
-        this.editor_view.setEditor(anim_editor) ;
+        this.setEditor(anim_editor) ;
     }   
     editImage(img) {
         var img_editor = new mnImageEditor(img);
-        this.editor_view.setEditor(img_editor) ;
+        this.setEditor(img_editor) ;
     }
     createNewImage() {
         alert("You want to create a new image!");

@@ -26,6 +26,9 @@ class LanguageStrings {
 
         this.save = "Save";
         this.delete = "Delete";
+        this.discard = "Discard";
+
+        this.save_discard_message = "There are unsaved changes in the object. Do you want to save them?";
     }
 }
 
