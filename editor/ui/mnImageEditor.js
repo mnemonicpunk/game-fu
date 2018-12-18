@@ -50,9 +50,13 @@ class mnImageEditor extends mnSplitPaneEditor {
     }
     onBlur(new_destination) {
         // if we have unsaved changes, display a confirmation dialog
-        // we always have unsaved changes for testing purposes
+        /*
         var sdd = new mnSaveDiscardDialog(this, new_destination);
         return sdd;
+        */
+
+        // we default to no unchanged data for now
+        return new_destination;
     }
     wheelZoom(deltaY) {
         console.log(deltaY);
