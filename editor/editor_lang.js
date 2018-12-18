@@ -27,7 +27,9 @@ class LanguageStrings {
         this.save = "Save";
         this.delete = "Delete";
         this.discard = "Discard";
+        this.cancel = "Cancel";
 
+        this.save_discard_title = "Unsaved Changes";
         this.save_discard_message = "There are unsaved changes in the object. Do you want to save them?";
     }
 }
@@ -61,6 +63,11 @@ class LanguageStringsDE extends LanguageStrings {
 
         this.save = "Speichern";
         this.delete = "L&ouml;schen";
+        this.discard = "Verwerfen";
+        this.cancel = "Abbrechen";
+
+        this.save_discard_title = "Ungespeicherte &Auml;nderungen";
+        this.save_discard_message = "Es gibt ungespeicherte &Auml;nderungen. M&ouml;chtest du sie speichern?";        
     }
 }
 

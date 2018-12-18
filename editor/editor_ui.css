@@ -262,3 +262,29 @@ body {
 .vs_canvas {
     background: #000;
 }
+
+.editor_modal_title {
+    font-size: 44px;
+    padding: 10px;
+}
+
+.editor_modal_message {
+    font-size: 22px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.editor_modal_button {
+    padding: 20px;
+    background: #555;
+    color: #fff;
+    display: inline;
+    margin: 10px;
+    border-radius: 5px;
+    float: center;
+}
+
+.editor_modal_button:hover {
+    cursor: pointer;
+    background: #888;
+}
