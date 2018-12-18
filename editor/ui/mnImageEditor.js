@@ -14,7 +14,8 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.render.setSize(this.edit_main_pane.width, this.edit_main_pane.height);
 
         var temp_img = document.createElement('img');
-        temp_img.src = "https://pbs.twimg.com/media/BuEGY5gIQAAEuZd.png";
+        temp_img.src = img.url;
+        console.dir(img);
 
         this.img_sprite = this.render.getLayer('main').createSprite();
         this.img_sprite._animation = new mnStaticFullImage(temp_img);

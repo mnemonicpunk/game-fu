@@ -41,7 +41,6 @@ class mnStorage {
         }
         if (index == -1) {
             // we didn't yet have it
-            console.dir(projects);
             projects.push(project.meta);
         } else {
             // we already have it, overwrite

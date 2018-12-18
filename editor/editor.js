@@ -6,12 +6,12 @@ window.addEventListener('load', function() {
     document.body.appendChild(editor.ui.el);
 
     this.localStorage.clear();
-    
+
     editor.addAsset('objects', new mnAssetObject("TestObject"));
     editor.addAsset('scenes', new mnAssetScene("TestScene"));
     editor.addAsset('animations', new mnAssetAnimation("TestAnimation"));
     editor.addAsset('animations', new mnAssetAnimation("TestAnimation2"));
-    editor.addAsset('images', new mnAssetImage("TestImage"));
+    editor.addAsset('images', new mnAssetImage("TestImage", "https://pbs.twimg.com/media/BuEGY5gIQAAEuZd.png"));
 
     editor.save();    
 

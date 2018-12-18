@@ -1,11 +1,12 @@
 class mnAssetImage extends mnAsset {
-    constructor(name) {
+    constructor(name, url) {
         super(name);
+        this.url = url;
     }
     toData() {
         return {
             name: this.name,
-            url: ""
+            url: this.url
         }
     }    
 }

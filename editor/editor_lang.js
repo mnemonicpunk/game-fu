@@ -7,6 +7,15 @@ class LanguageStrings {
             animations: 'Animations',
             images: 'Images'
         };
+        this.category = {
+            project: 'Project',
+            objects: 'Object',
+            scenes: 'Scene',
+            animations: 'Animation',
+            images: 'Image'
+        };        
+
+        this.unnamed = "Unnamed";
 
         this.object_name = 'Object Name';
         this.scene_name = 'Scene Name';
@@ -44,6 +53,16 @@ class LanguageStringsDE extends LanguageStrings {
             animations: 'Animationen',
             images: 'Bilder'
         };
+
+        this.category = {
+            project: 'Projekt',
+            objects: 'Objekt',
+            scenes: 'Szene',
+            animations: 'Animation',
+            images: 'Bild'
+        };        
+
+        this.unnamed = "Unbenannt";
 
         this.object_name = 'Objektname';
         this.scene_name = 'Szenenname';
