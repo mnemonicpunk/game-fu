@@ -15,10 +15,14 @@ class mnImageEditor extends mnSplitPaneEditor {
 
         var temp_img = document.createElement('img');
         temp_img.src = img.url;
-        console.dir(img);
 
         this.img_sprite = this.render.getLayer('main').createSprite();
         this.img_sprite._animation = new mnStaticFullImage(temp_img);
+
+        temp_img.onload = function() {
+            _Instance.img_sprite._animation = new mnStaticFullImage(temp_img);            
+        }
+
 
         // add the delete/save toolstrip
         this.savedel = new mnSaveDelBar();
