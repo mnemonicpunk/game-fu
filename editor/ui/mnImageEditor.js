@@ -4,25 +4,8 @@ class mnImageEditor extends mnSplitPaneEditor {
 
         var _Instance = this;
 
-        this.canvas = document.createElement('canvas');
-        this.canvas.style = "width: 100%; height: 100%";
-        this.canvas.addEventListener('wheel', (e) => { _Instance.wheelZoom(e.deltaY); });        
-
-        this.edit_main_pane.appendChild(this.canvas);
-
-        this.render = new mnRender(this.canvas);
-        this.render.createLayer('main');
-        this.render.setSize(this.edit_main_pane.width, this.edit_main_pane.height);
-
-        var temp_img = document.createElement('img');
-        temp_img.src = this.model.url;
-
-        temp_img.onload = function() {
-            _Instance.img_sprite._animation = new mnStaticFullImage(temp_img);            
-        };
-
-        this.img_sprite = this.render.getLayer('main').createSprite();
-        this.img_sprite._animation = new mnStaticFullImage(temp_img);
+        this.image_display = new mnImageDisplay(model);
+        this.edit_main_pane.appendChild(this.image_display.el);
 
         // add the delete/save toolstrip
         this.savedel = new mnSaveDelBar();
@@ -42,9 +25,7 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.image_name.setValue(this.model.name);
 
         window.addEventListener('resize', function() {
-            _Instance.render.setSize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
-            _Instance.img_sprite.x = _Instance.edit_main_pane.clientWidth / 2;
-            _Instance.img_sprite.y = _Instance.edit_main_pane.clientHeight / 2;
+            _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
         });
     }
     onBlur(new_destination) {
