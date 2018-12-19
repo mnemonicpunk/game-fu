@@ -3,6 +3,8 @@ class mnSaveDelBar extends mnWidget {
         super();
         this.el.className ="savedel_bar";
 
+        this.enabled = false;
+
         this.del_btn = document.createElement('div');
         this.del_btn.className = "savedel_bar_button";
         this.del_btn.innerHTML = "<i class=\"far fa-trash-alt\"></i> " + language.strings.delete;
@@ -16,6 +18,13 @@ class mnSaveDelBar extends mnWidget {
         this.save_btn = document.createElement('div');
         this.save_btn.className = "savedel_bar_button";
         this.save_btn.innerHTML = "<i class=\"fas fa-check\"></i> " + language.strings.save;
-        this.el.appendChild(this.save_btn);        
+        this.el.appendChild(this.save_btn);     
+        
+        this.enable(false);
+    }
+    enable(state) {
+        this.enabled = state;
+        this.discard_btn.className = this.enabled?"savedel_bar_button":"savedel_bar_button savedel_bar_button_disabled";
+        this.save_btn.className = this.enabled?"savedel_bar_button":"savedel_bar_button savedel_bar_button_disabled";
     }
 }

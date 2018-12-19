@@ -194,6 +194,11 @@ body {
     background: #888;
 }
 
+.savedel_bar_button_disabled {
+    color: #888;
+}
+
+
 .labeled_textbox {
     margin-bottom: 20px;
     width: 100%;

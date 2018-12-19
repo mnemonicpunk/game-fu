@@ -8,10 +8,13 @@ class mnBasicEditor extends mnWidget {
         this.model = model;
     }
     save() {
-
+        this.has_changes = false;
     }
     discard() {
-        
+        this.has_changes = false;
+    }
+    changed() {
+        this.has_changes = true;
     }
     onBlur(new_editor) {
         return new_editor;
