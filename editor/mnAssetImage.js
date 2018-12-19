@@ -3,7 +3,7 @@ class mnAssetImage extends mnAsset {
         super(name);
         this.url = url;
     }
-    toData() {
+    toJSON() {
         return {
             name: this.name,
             url: this.url

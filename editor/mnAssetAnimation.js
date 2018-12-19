@@ -1,12 +1,43 @@
 class mnAssetAnimation extends mnAsset {
     constructor(name) {
         super(name);
+
+        // the image asset we're going to use for this animation
+        this.image = null;
+
+        // the frame data for the animation, does not depend on image
+        this.frames = [];
     }
-    toData() {
+    toJSON() {
         return {
             name: this.name,
-            image: null,
-            frames: []
+            image: this.image,
+            frames: this.frames
         }
+    }
+    addFrame(x, y, width, height, offset_x, offset_y) {
+        this.frames.push({
+			'x': x,
+			'y': y,
+			'width': width,
+			'height': height,
+			'offset_x': offset_x,
+			'offset_y': offset_y
+		});
+    }
+    setImage(image) {
+        this.image = image;
+    }
+    getImage() {
+        return this.image;
+    }
+    getFrame(index) {
+        return this.frames[index];
+    }
+    setFrame(index, frame) {
+        // make sure the frame exists
+        if (this.frames[index] == undefined) { return; }
+
+        this.frames[index] = frame;
     }    
 }
