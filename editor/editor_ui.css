@@ -177,7 +177,7 @@ body {
 
 .savedel_bar_button {
     display: inline-block;
-    width: calc(50% - 40px);
+    width: calc(32% - 30px);
     height: 44px;
     background: #555;
     color: #fff;
@@ -187,6 +187,11 @@ body {
 
     padding: 5px;
     margin: 10px;
+}
+
+.savedel_bar_button:hover {
+    cursor: pointer;
+    background: #888;
 }
 
 .labeled_textbox {

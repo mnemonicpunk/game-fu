@@ -46,7 +46,7 @@ class mnProjectExplorer extends mnWidget {
         }
     }
     update() {
-        for (var i=0; i<this.categories.length; i++) {
+        for (var i in this.categories) {
             this.categories[i].update();
         }
     }

@@ -17,10 +17,16 @@ class mnLabeledTextbox extends mnWidget {
         this.el.appendChild(this.text);
 
         this.text.addEventListener('change', function() {
+            if (on_change_handler == undefined) {
+                return;
+            }
             on_change_handler(_Instance.text.value);
         });
     }
     setValue(val) {
         this.text.value = val;
     }
+    getValue() {
+        return this.text.value;
+    }    
 }

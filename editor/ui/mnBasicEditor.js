@@ -1,8 +1,11 @@
 class mnBasicEditor extends mnWidget {
-    constructor() {
+    constructor(model) {
         super();
         this.el = document.createElement('div');
         this.el.className = "editor";
+
+        this.has_changes = false;
+        this.model = model;
     }
     save() {
 
