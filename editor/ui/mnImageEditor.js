@@ -24,8 +24,16 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.edit_properties_pane.appendChild(this.image_name.el);
         this.image_name.setValue(this.model.name);
 
+        // now let's add the viewSelector
+        this.view_selector = new mnViewSelector(this.model, this.image_display);
+        //this.view_selector.setCursorSize(100, 80);
+        this.edit_properties_pane.appendChild(this.view_selector.el);
+
         window.addEventListener('resize', function() {
             _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
+            //_Instance.view_selector.resize(1000, 1000);
+            _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth, _Instance.edit_properties_pane.clientWidth);
+            //_Instance.view_selector.setSize(_Instance.edit_properties_pane.clientWidth - 40);
         });
     }
     onBlur(new_destination) {
