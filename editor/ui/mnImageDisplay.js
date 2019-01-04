@@ -28,6 +28,11 @@ class mnImageDisplay extends mnWidget {
 
         this.image = image;
     
+        if ((this.image == null) || (this.image == undefined)) {
+            console.log("Warning: No image defined.");
+            return;
+        }
+
         var temp_img = document.createElement('img');
         temp_img.src = this.image.url;
 
@@ -54,9 +59,7 @@ class mnImageDisplay extends mnWidget {
         this.img_sprite.y = h / 2;
     }
     setOrigin(x, y) {
-        console.dir([x, y]);
         this.img_sprite.x = (this.width/2) + ((x-0.5) * -this.img_sprite._animation.frames[0].width );
         this.img_sprite.y = (this.height/2) + ((y-0.5) * -this.img_sprite._animation.frames[0].height );
-        console.dir(this.img_sprite);
     }
 }

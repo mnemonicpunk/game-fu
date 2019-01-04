@@ -1,11 +1,20 @@
 class mnAnimationEditor extends mnSplitPaneEditor {
-    constructor(anim) {
-        super();
+    constructor(model) {
+        super(model);
         var _Instance = this;
 
-        this.anim = anim;
-
+        this.anim = model;
+        console.dir(model);
+        
         let image_assets = editor.getAssets('images');
+
+        if (model.image == null) {
+            console.log("Asset has no assigned image, assigning first image.");
+            model.image = image_assets[0];
+        }
+
+        this.image_display = new mnImageDisplay(model.image);
+        this.edit_main_pane.appendChild(this.image_display.el);        
 
         // create the name textbox
         this.animation_name = new mnLabeledTextbox(language.strings.animation_name, function(text) {
@@ -30,13 +39,13 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 
         this.edit_properties_pane.appendChild(this.seek_widget.el);
 
-        this.vs = new mnViewSelector();
-        this.edit_properties_pane.appendChild(this.vs.el);
-        this.vs.setSize(0);
-        this.vs.setCursorSize(100, 80);
-        
+        // now let's add the viewSelector
+        this.view_selector = new mnViewSelector(this.model.image, this.image_display);
+        this.edit_properties_pane.appendChild(this.view_selector.el);
+
         window.addEventListener('resize', function() {
-            _Instance.vs.setSize(_Instance.edit_properties_pane.clientWidth - 40);
+            _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
+            _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth, _Instance.edit_properties_pane.clientWidth);
         });
     }
 }
