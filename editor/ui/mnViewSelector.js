@@ -18,7 +18,7 @@ class mnViewSelector extends mnImageDisplay {
         this.cursor.draw = function(ctx) {
             ctx.strokeStyle = '#f00';
             ctx.strokeRect(this.x - _Instance.cursor_w/2, this.y - _Instance.cursor_h/2, _Instance.cursor_w, _Instance.cursor_h);
-        }
+        };
 
         this.el.addEventListener('mousemove', function(e) {
             if (!(e.buttons && 1)) { return; }
@@ -28,7 +28,8 @@ class mnViewSelector extends mnImageDisplay {
             _Instance.setCursorPosition(e.offsetX, e.offsetY);
         });
         
-        this.setCursorPosition(0, 0);
+        this.setCursorPosition(this.width, this.height);
+        this.hasBeenInitialized = false;
     }
     resize(w, h) {
         super.resize(w, h);
@@ -50,35 +51,21 @@ class mnViewSelector extends mnImageDisplay {
             this.cursor_w = this.target.width * this.pixel_ratio;
             this.cursor_h = this.target.height * this.pixel_ratio;
 
-            /*console.dir({
-                'image_width': this.image_width,
-                'image_height': this.image_height,
-                'scaled_width': this.img_sprite.scale_x,
-                'scaled_height': this.img_sprite.scale_y,
-                'target_width': this.target.width,
-                'target_height': this.target.height,
-                'cursor_w': this.cursor_w,
-                'cursor_h': this.cursor_h,
-                'longer_side': longer_side,
-                'pixel_ratio': this.pixel_ratio
-            });*/
+            if (!this.hasBeenInitialized) {
+                this.setCursorPosition(this.width/2, this.height/2);
+                this.hasBeenInitialized = true;
+            }            
         } 
+
+        
     }
     setCursorPosition(mx, my) {
         this.cursor.x = mx/2;
         this.cursor.y = my/2;
 
         if (this.target != undefined) {
-            this.target.setOrigin((this.cursor.x*2)/this.width, (this.cursor.y*2)/this.height);
+            this.target.setOrigin((this.cursor.x*2)/this.width, (this.cursor.y*2)/this.height);            
         }
-
-        /*console.dir({
-            'x': mx/2,
-            'y': my/2,
-            'width': this.width,
-            'height': this.height
-        });
-        console.dir(this.cursor);*/
     }
 
 }

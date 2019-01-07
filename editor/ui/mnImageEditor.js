@@ -29,13 +29,9 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.edit_properties_pane.appendChild(this.view_selector.el);
 
         window.addEventListener('resize', function() {
+            // TO-DO: De-uglify the padding subtraction
             _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth - 20, _Instance.edit_main_pane.clientHeight - 20);
             _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth - 20, _Instance.edit_properties_pane.clientWidth - 20);
-
-            console.dir({
-                'edit_main_pane': _Instance.edit_main_pane,
-                'edit_properties_pane': _Instance.edit_properties_pane
-            });
         });
     }
     onBlur(new_destination) {

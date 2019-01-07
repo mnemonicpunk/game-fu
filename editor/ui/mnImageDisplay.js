@@ -50,7 +50,7 @@ class mnImageDisplay extends mnWidget {
             _Instance.image_width = temp_img.width;
             _Instance.image_height = temp_img.height;    
 
-            _Instance.resize(_Instance.width, _Instance.height);   
+            _Instance.resize(_Instance.width, _Instance.height);
         };          
     }
     resize(w, h) {
@@ -64,8 +64,8 @@ class mnImageDisplay extends mnWidget {
         this.img_sprite.y = h / 2;
     }
     setOrigin(x, y) {
-        this.origin_x = (this.width/2) + ((x-0.5) * -this.img_sprite._animation.frames[0].width );
-        this.origin_y = (this.height/2) + ((y-0.5) * -this.img_sprite._animation.frames[0].height );
+        this.origin_x = (this.width/2) + ((x-0.5) * -this.image_width );
+        this.origin_y = (this.height/2) + ((y-0.5) * -this.image_height );
 
         this.img_sprite.x = this.origin_x;
         this.img_sprite.y = this.origin_y;

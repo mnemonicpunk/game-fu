@@ -4,12 +4,7 @@ class mnAnimationDisplay extends mnImageDisplay {
 
         var _Instance = this;
 
-        this.selection_x = -10;
-        this.selection_y = -10;
-        this.selection_width = 20;
-        this.selection_height = 20;
         this.selecting = false;
-
         this.selection = {
             x: 0,
             y: 0,
@@ -20,11 +15,11 @@ class mnAnimationDisplay extends mnImageDisplay {
         this.selectionA = {
             'x': 0,
             'y': 0
-        }
+        };
         this.selectionB = {
             'x': 0,
             'y': 0
-        }
+        };
 
         this.selection_sprite = this.render.getLayer('main').createSprite();
         this.selection_sprite.draw = function(ctx) {
@@ -35,7 +30,7 @@ class mnAnimationDisplay extends mnImageDisplay {
             ctx.strokeStyle = "#fff";
             ctx.strokeRect(0, 0, s.w, s.h);
 
-            let txt = Math.round(s.x) + "/" + Math.round(s.y) + " - " + Math.round(s.w) + "/" + Math.round(s.h);
+            let txt = Math.round(s.x + _Instance.image_width/2) + "/" + Math.round(s.y + _Instance.image_height/2) + " - " + Math.round(s.w) + "/" + Math.round(s.h);
             ctx.fillStyle = "#fff";
             ctx.fillText(txt, -1, s.h + 20);
             ctx.fillStyle = "#fff";
@@ -47,8 +42,7 @@ class mnAnimationDisplay extends mnImageDisplay {
 
             ctx.fillStyle = "#000";
             ctx.fillText(txt, 0, s.h + 20);
-
-        }
+        };
 
         this.el.addEventListener('mousedown', function(e) {
             _Instance.setSelectionA(e.offsetX - _Instance.origin_x, e.offsetY - _Instance.origin_y);
@@ -63,7 +57,14 @@ class mnAnimationDisplay extends mnImageDisplay {
             _Instance.setSelectionB(e.offsetX - _Instance.origin_x, e.offsetY - _Instance.origin_y);
             _Instance.selecting = false;
         });
-
+        this.setOrigin(this.width/2, this.height/2);
+    }
+    resize(w, h) {
+        super.resize(w, h);
+        if (this.selection_sprite != undefined) {
+            this.selection_sprite.x = this.origin_x + this.selection.x;
+            this.selection_sprite.y = this.origin_y + this.selection.y;
+        }
     }
     setOrigin(x, y) {
         super.setOrigin(x, y);
@@ -106,7 +107,7 @@ class mnAnimationDisplay extends mnImageDisplay {
             y: tl.y,
             w: br.x - tl.x,
             h: br.y - tl.y
-        }
+        };
 
         this.selection_sprite.x = this.origin_x + this.selection.x;
         this.selection_sprite.y = this.origin_y + this.selection.y;
