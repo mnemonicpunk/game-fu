@@ -10,6 +10,9 @@ class mnImageDisplay extends mnWidget {
         this.image_width = 0;
         this.image_height = 0;
 
+        this.origin_x = 0;
+        this.origin_y = 0;
+
         // create our canvas
         this.el = document.createElement('canvas');
         this.el.style = "width: 100%; height: 100%";
@@ -53,13 +56,18 @@ class mnImageDisplay extends mnWidget {
     resize(w, h) {
         this.width = w;
         this.height = h;
+        this.el.style.width = w + "px";
+        this.el.style.height = h + "px";
 
         this.render.setSize(w, h);
         this.img_sprite.x = w / 2;
         this.img_sprite.y = h / 2;
     }
     setOrigin(x, y) {
-        this.img_sprite.x = (this.width/2) + ((x-0.5) * -this.img_sprite._animation.frames[0].width );
-        this.img_sprite.y = (this.height/2) + ((y-0.5) * -this.img_sprite._animation.frames[0].height );
+        this.origin_x = (this.width/2) + ((x-0.5) * -this.img_sprite._animation.frames[0].width );
+        this.origin_y = (this.height/2) + ((y-0.5) * -this.img_sprite._animation.frames[0].height );
+
+        this.img_sprite.x = this.origin_x;
+        this.img_sprite.y = this.origin_y;
     }
 }

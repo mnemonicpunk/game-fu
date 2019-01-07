@@ -4,16 +4,14 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         var _Instance = this;
 
         this.anim = model;
-        console.dir(model);
         
         let image_assets = editor.getAssets('images');
 
         if (model.image == null) {
-            console.log("Asset has no assigned image, assigning first image.");
             model.image = image_assets[0];
         }
 
-        this.image_display = new mnImageDisplay(model.image);
+        this.image_display = new mnAnimationDisplay(model);
         this.edit_main_pane.appendChild(this.image_display.el);        
 
         // create the name textbox
@@ -44,8 +42,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.edit_properties_pane.appendChild(this.view_selector.el);
 
         window.addEventListener('resize', function() {
-            _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
-            _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth, _Instance.edit_properties_pane.clientWidth);
+            _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth - 20, _Instance.edit_main_pane.clientHeight - 20);
+            _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth - 20, _Instance.edit_properties_pane.clientWidth - 20);
         });
     }
 }
