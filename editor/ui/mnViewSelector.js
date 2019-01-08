@@ -57,7 +57,9 @@ class mnViewSelector extends mnImageDisplay {
             }            
         } 
 
-        
+        if (this.target != undefined) {
+            this.target.setOrigin((this.cursor.x*2)/this.width, (this.cursor.y*2)/this.height);            
+        }
     }
     setCursorPosition(mx, my) {
         this.cursor.x = mx/2;

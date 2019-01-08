@@ -94,11 +94,9 @@ class mnSeekWidget extends mnWidget {
 
         this.slider.addEventListener('change', function(e) {
             _Instance.setPosition(_Instance.slider.value);
-            console.log(_Instance.pos);
         });
         this.slider.addEventListener('input', function(e) {
             _Instance.setPosition(_Instance.slider.value);
-            console.log(_Instance.pos);
         });
 
         this.setPosition(0);

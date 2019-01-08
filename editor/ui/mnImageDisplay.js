@@ -25,6 +25,9 @@ class mnImageDisplay extends mnWidget {
         this.img_sprite = this.render.getLayer('main').createSprite();
         this.setImage(image);
 
+        this.el.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
     }
     setImage(image) {
         var _Instance = this;

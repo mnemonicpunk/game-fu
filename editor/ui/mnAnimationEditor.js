@@ -37,6 +37,22 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 
         this.edit_properties_pane.appendChild(this.seek_widget.el);
 
+        // also add the frame tools
+        this.frame_tools = document.createElement('div');
+        this.frame_tools.className = 'frame_tools';
+
+        this.frame_tools_add = document.createElement('div');
+        this.frame_tools_add.innerHTML = "<i class=\"far fa-plus-square\"></i> Add";
+        this.frame_tools_add.className = 'frame_tools_button';
+
+        this.frame_tools_remove = document.createElement('div');
+        this.frame_tools_remove.innerHTML = "<i class=\"far fa-minus-square\"></i> Remove";
+        this.frame_tools_remove.className = 'frame_tools_button';
+
+        this.frame_tools.appendChild(this.frame_tools_add);
+        this.frame_tools.appendChild(this.frame_tools_remove);
+        this.edit_properties_pane.appendChild(this.frame_tools);
+
         // now let's add the viewSelector
         this.view_selector = new mnViewSelector(this.model.image, this.image_display);
         this.edit_properties_pane.appendChild(this.view_selector.el);
