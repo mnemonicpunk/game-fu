@@ -31,16 +31,13 @@ class mnAnimationDisplay extends mnImageDisplay {
             ctx.strokeRect(0, 0, s.w, s.h);
 
             let txt = Math.round(s.x + _Instance.image_width/2) + "/" + Math.round(s.y + _Instance.image_height/2) + " - " + Math.round(s.w) + "/" + Math.round(s.h);
-            ctx.fillStyle = "#fff";
-            ctx.fillText(txt, -1, s.h + 20);
-            ctx.fillStyle = "#fff";
-            ctx.fillText(txt, 1, s.h + 20);
-            ctx.fillStyle = "#fff";
-            ctx.fillText(txt, 0, s.h + 21);
-            ctx.fillStyle = "#fff";
-            ctx.fillText(txt, 0, s.h + 19);
-
             ctx.fillStyle = "#000";
+            ctx.fillText(txt, -2, s.h + 20);
+            ctx.fillText(txt, 2, s.h + 20);
+            ctx.fillText(txt, 0, s.h + 22);
+            ctx.fillText(txt, 0, s.h + 18);
+
+            ctx.fillStyle = "#fff";
             ctx.fillText(txt, 0, s.h + 20);
         };
 
