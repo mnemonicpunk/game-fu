@@ -177,7 +177,7 @@ body {
 
 .savedel_bar_button {
     display: inline-block;
-    width: calc(32% - 30px);
+    width: calc(33% - 10px);
     height: 44px;
     background: #555;
     color: #fff;
@@ -185,8 +185,7 @@ body {
     line-height: 44px;
     border-radius: 5px;
 
-    padding: 5px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .savedel_bar_button:hover {
@@ -205,7 +204,6 @@ body {
 }
 
 .labeled_textbox_label {
-    font-size: 150%;
     color: #aaa;
 }
 
@@ -220,7 +218,6 @@ body {
 }
 
 .labeled_dropdown_label {
-    font-size: 150%;
     color: #aaa;
 }
 
@@ -269,6 +266,7 @@ body {
 
 .view_selector {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .vs_canvas {
@@ -293,7 +291,6 @@ body {
     display: inline;
     margin: 10px;
     border-radius: 5px;
-    float: center;
 }
 
 .editor_modal_button:hover {

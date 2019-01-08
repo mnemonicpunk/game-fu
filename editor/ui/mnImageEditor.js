@@ -17,16 +17,16 @@ class mnImageEditor extends mnSplitPaneEditor {
         });
         this.edit_properties_pane.appendChild(this.savedel.el);
 
+        // now let's add the viewSelector
+        this.view_selector = new mnViewSelector(this.model, this.image_display);
+        this.edit_properties_pane.appendChild(this.view_selector.el);
+
         // create the name textbox
         this.image_name = new mnLabeledTextbox(language.strings.image_name, function() {
             _Instance.changed();
         });
         this.edit_properties_pane.appendChild(this.image_name.el);
         this.image_name.setValue(this.model.name);
-
-        // now let's add the viewSelector
-        this.view_selector = new mnViewSelector(this.model, this.image_display);
-        this.edit_properties_pane.appendChild(this.view_selector.el);
 
         window.addEventListener('resize', function() {
             // TO-DO: De-uglify the padding subtraction
