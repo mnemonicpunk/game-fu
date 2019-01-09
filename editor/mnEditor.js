@@ -28,6 +28,7 @@ class mnEditor {
     addAsset(category, asset) {
         this.project.addAsset(category, asset);
         this.assetsChanged();
+        return asset;
     }
     getAssets(category) {
         return this.project.assets[category];

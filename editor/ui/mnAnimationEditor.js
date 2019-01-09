@@ -3,12 +3,11 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         super(model);
         var _Instance = this;
 
-        this.anim = model;
         this.working_model = {
             frames: [],
             image: null,
             name: null
-        }
+        };
         this.current_frame = 0;
         
         let image_assets = editor.getAssets('images');
@@ -37,9 +36,10 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         // create the name textbox
         this.animation_name = new mnLabeledTextbox(language.strings.animation_name, function(text) {
             console.log("Value changed to: " + text);
+            _Instance.working_model.name = text;
         });
         this.edit_properties_pane.appendChild(this.animation_name.el);
-        this.animation_name.setValue(this.anim.name);
+        this.animation_name.setValue(this.model.name);
 
         // create the image selection dropdown
         this.image_selected = new mnLabeledDropdown(language.strings.using_image, function(p) {
@@ -87,19 +87,47 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             _Instance.animation_display.resize(_Instance.edit_main_pane.clientWidth - 20, _Instance.edit_main_pane.clientHeight - 20);
             _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth - 20, _Instance.edit_properties_pane.clientWidth - 20);
         });
+
+        this.savedel.enable(false);
+
+        this.discard();
+        console.dir(this.working_model);
     }
+    onBlur(new_destination) {
+        // if we have unsaved changes, display a confirmation dialog
+        
+        if (this.has_changes) {
+            return new mnSaveDiscardDialog(this, new_destination);
+        } else {
+            return new_destination;
+        }
+    }    
     save() {
         super.save();
+        this.getAnimationBoxes();
         this.model.frames = this.working_model.frames;
         this.model.name = this.working_model.name;
-        this.model.image = this.working_model.image;        
+        this.model.image = this.working_model.image;
+        this.savedel.enable(false);     
+        this.update();
+
+        console.dir(this.model);
+        console.dir(editor.getAssets("animations"));
     }
     discard() {
         super.discard();
         this.working_model.frames = this.model.frames;
         this.working_model.name = this.model.name;
         this.working_model.image = this.model.image;
+        this.animation_name.setValue(this.model.name);
+        this.putAnimationBoxes();
+        this.savedel.enable(false);
+        this.update();
     }
+    changed() {
+        super.changed();
+        this.savedel.enable(true);
+    }    
     addEmptyFrame(index) {
         var f = {
             x: 0,
@@ -108,7 +136,7 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             height: 0,
             offset_x: 0,
             offset_y: 0
-        }
+        };
         this.working_model.frames.splice(index, 0, f);
     }
     plusFrame() {
@@ -152,8 +180,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         let f = {
             x: sel.x,
             y: sel.y,
-            w: sel.w,
-            h: sel.h,
+            width: sel.w,
+            height: sel.h,
             offset_x: ori.x,
             offset_y: ori.y
         };
@@ -167,13 +195,13 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.animation_display.selection = {
             x: cf.x,
             y: cf.y,
-            w: cf.w,
-            h: cf.h
+            w: cf.width,
+            h: cf.height
         };
         this.animation_display.sprite_origin = {
             x: cf.offset_x,
             y: cf.offset_y
-        }
+        };
     }
     setCurrentFrame(pos) {
         this.getAnimationBoxes();
