@@ -70,6 +70,9 @@ class mnImageDisplay extends mnWidget {
         this.origin_x = (this.width/2) + ((x-0.5) * -this.image_width );
         this.origin_y = (this.height/2) + ((y-0.5) * -this.image_height );
 
+        this.realign();
+    }
+    realign() {
         this.img_sprite.x = this.origin_x;
         this.img_sprite.y = this.origin_y;
     }

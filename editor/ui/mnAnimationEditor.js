@@ -17,8 +17,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             model.image = image_assets[0];
         }
 
-        this.image_display = new mnAnimationDisplay(model);
-        this.edit_main_pane.appendChild(this.image_display.el);        
+        this.animation_display = new mnAnimationDisplay(model);
+        this.edit_main_pane.appendChild(this.animation_display.el);        
 
         // add the delete/save toolstrip
         this.savedel = new mnSaveDelBar();
@@ -31,7 +31,7 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.edit_properties_pane.appendChild(this.savedel.el);
 
         // now let's add the viewSelector
-        this.view_selector = new mnViewSelector(this.model.image, this.image_display);
+        this.view_selector = new mnViewSelector(this.model.image, this.animation_display);
         this.edit_properties_pane.appendChild(this.view_selector.el);
 
         // create the name textbox
@@ -51,10 +51,9 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         }
         this.edit_properties_pane.appendChild(this.image_selected.el); 
         
-        this.seek_widget = new mnSeekWidget();
-        this.seek_widget.setPosition(0);
-        this.seek_widget.setMaxPosition(this.working_model.frames.length);
-
+        this.seek_widget = new mnSeekWidget(function(pos) {
+            _Instance.setCurrentFrame(pos);
+        });
         this.edit_properties_pane.appendChild(this.seek_widget.el);
 
         // also add the frame tools
@@ -73,10 +72,19 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.frame_tools.appendChild(this.frame_tools_remove);
         this.edit_properties_pane.appendChild(this.frame_tools);
 
+        this.seek_widget.setPosition(0);
+        this.seek_widget.setMaxPosition(this.working_model.frames.length);
+
+        this.frame_tools_add.addEventListener('click', function() {
+            _Instance.plusFrame();
+        });
+        this.frame_tools_remove.addEventListener('click', function() {
+            _Instance.minusFrame();
+        });        
 
         window.addEventListener('resize', function() {
             // TO-DO: De-uglify the padding subtraction
-            _Instance.image_display.resize(_Instance.edit_main_pane.clientWidth - 20, _Instance.edit_main_pane.clientHeight - 20);
+            _Instance.animation_display.resize(_Instance.edit_main_pane.clientWidth - 20, _Instance.edit_main_pane.clientHeight - 20);
             _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth - 20, _Instance.edit_properties_pane.clientWidth - 20);
         });
     }
@@ -92,7 +100,7 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.working_model.name = this.model.name;
         this.working_model.image = this.model.image;
     }
-    plusFrame() {
+    addEmptyFrame(index) {
         var f = {
             x: 0,
             y: 0,
@@ -101,9 +109,76 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             offset_x: 0,
             offset_y: 0
         }
-        this.working_model.frames.push(f);
+        this.working_model.frames.splice(index, 0, f);
+    }
+    plusFrame() {
+        if (this.working_model.frames.length == 0) {
+            this.addEmptyFrame(0);
+            this.current_frame = 0;    
+        } else {
+            this.addEmptyFrame(this.current_frame);
+            this.current_frame++;    
+        }
+        this.update();
     }
     minusFrame() {
+        this.working_model.frames.splice(this.current_frame, 1);
+        this.current_frame--;    
+        if (this.working_model.frames.length <= 0) {
+            this.addEmptyFrame(0);
+            this.current_frame = 0;
+        }
+        this.update();
+        console.dir({
+            model: this.working_model,
+            current_frame: this.current_frame
+        });
+    }
+    update() {
+        let mp = this.working_model.frames.length-1;
+        if (mp >= 0) {
+            this.seek_widget.setMaxPosition(mp);
+        } else {
+            this.seek_widget.setMaxPosition(0);
+        }
+        this.seek_widget.setPosition(this.current_frame);
+        this.animation_display.realign();
+    }
+    // this reads the animation data from the AnimationDisplay component and stores it in our working model
+    getAnimationBoxes() {
+        let sel = this.animation_display.selection;
+        let ori = this.animation_display.sprite_origin;
 
+        let f = {
+            x: sel.x,
+            y: sel.y,
+            w: sel.w,
+            h: sel.h,
+            offset_x: ori.x,
+            offset_y: ori.y
+        };
+
+        this.working_model.frames[this.current_frame] = f;
+    }
+    // this takes the animation data from the working model and puts it into the AnimationDisplay component
+    putAnimationBoxes() {
+        let cf = this.working_model.frames[this.current_frame];
+
+        this.animation_display.selection = {
+            x: cf.x,
+            y: cf.y,
+            w: cf.w,
+            h: cf.h
+        };
+        this.animation_display.sprite_origin = {
+            x: cf.offset_x,
+            y: cf.offset_y
+        }
+    }
+    setCurrentFrame(pos) {
+        this.getAnimationBoxes();
+        this.current_frame = pos;
+        this.putAnimationBoxes();
+        this.update();
     }
 }

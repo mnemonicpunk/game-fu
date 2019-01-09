@@ -98,8 +98,8 @@ class mnAnimationDisplay extends mnImageDisplay {
             this.origin_cross.y = this.origin_y + this.sprite_origin.y;
         }        
     }
-    setOrigin(x, y) {
-        super.setOrigin(x, y);
+    realign() {
+        super.realign();
         this.selection_sprite.x = this.origin_x + this.selection.x;
         this.selection_sprite.y = this.origin_y + this.selection.y; 
         this.origin_cross.x = this.origin_x + this.sprite_origin.x;
