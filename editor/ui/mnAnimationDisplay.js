@@ -33,7 +33,8 @@ class mnAnimationDisplay extends mnImageDisplay {
             ctx.strokeStyle = "#000";
             ctx.strokeRect(0, 0, s.w, s.h);
 
-            let txt = Math.round(s.x + _Instance.image_width/2) + "/" + Math.round(s.y + _Instance.image_height/2) + " - " + Math.round(s.w) + "/" + Math.round(s.h);
+            let txt = Math.round(s.x) + "/" + Math.round(s.y) + " - " + Math.round(s.w) + "/" + Math.round(s.h);
+
             ctx.fillStyle = "#000";
             ctx.fillText(txt, -2, s.h + 20);
             ctx.fillText(txt, 2, s.h + 20);
@@ -62,7 +63,6 @@ class mnAnimationDisplay extends mnImageDisplay {
             if (e.buttons & 1) {
                 _Instance.setSelectionA(e.offsetX - _Instance.origin_x, e.offsetY - _Instance.origin_y);
                 _Instance.selecting = true;
-                console.log("leftclicked");
             }
             if (e.buttons & 2) {
                 _Instance.setSpriteOrigin(e.offsetX - _Instance.origin_x, e.offsetY - _Instance.origin_y);
@@ -89,21 +89,18 @@ class mnAnimationDisplay extends mnImageDisplay {
     }
     resize(w, h) {
         super.resize(w, h);
-        if (this.selection_sprite != undefined) {
-            this.selection_sprite.x = this.origin_x + this.selection.x;
-            this.selection_sprite.y = this.origin_y + this.selection.y;
-        }
-        if (this.origin_cross != undefined) {
-            this.origin_cross.x = this.origin_x + this.sprite_origin.x;
-            this.origin_cross.y = this.origin_y + this.sprite_origin.y;
-        }        
+        this.realign();      
     }
     realign() {
         super.realign();
-        this.selection_sprite.x = this.origin_x + this.selection.x;
-        this.selection_sprite.y = this.origin_y + this.selection.y; 
-        this.origin_cross.x = this.origin_x + this.sprite_origin.x;
-        this.origin_cross.y = this.origin_y + this.sprite_origin.y;            
+        if (this.selection_sprite != undefined) {
+            this.selection_sprite.x = this.origin_x + this.selection.x - this.image_width/2;
+            this.selection_sprite.y = this.origin_y + this.selection.y - this.image_height/2;
+        }
+        if (this.origin_cross != undefined) {
+            this.origin_cross.x = this.origin_x + this.sprite_origin.x - this.image_width/2;
+            this.origin_cross.y = this.origin_y + this.sprite_origin.y - this.image_height/2;
+        }           
     }
     setSelectionA(x, y) {
         this.selectionA.x = x;
@@ -115,8 +112,8 @@ class mnAnimationDisplay extends mnImageDisplay {
         this.updateSelectionRect();
     }
     setSpriteOrigin(x, y) {
-        this.sprite_origin.x = x;
-        this.sprite_origin.y = y;
+        this.sprite_origin.x = Math.round(x + this.image_width/2);
+        this.sprite_origin.y = Math.round(y + this.image_height/2);
         this.updateSelectionRect();
     }     
     updateSelectionRect() {
@@ -142,15 +139,12 @@ class mnAnimationDisplay extends mnImageDisplay {
         }
         
         this.selection = {
-            x: tl.x,
-            y: tl.y,
+            x: Math.round(tl.x + this.image_width/2),
+            y: Math.round(tl.y + this.image_height/2),
             w: br.x - tl.x,
             h: br.y - tl.y
         };
 
-        this.selection_sprite.x = this.origin_x + this.selection.x;
-        this.selection_sprite.y = this.origin_y + this.selection.y;
-        this.origin_cross.x = this.origin_x + this.sprite_origin.x;
-        this.origin_cross.y = this.origin_y + this.sprite_origin.y;        
+        this.realign();
     }  
 }

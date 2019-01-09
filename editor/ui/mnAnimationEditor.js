@@ -35,7 +35,7 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 
         // create the name textbox
         this.animation_name = new mnLabeledTextbox(language.strings.animation_name, function(text) {
-            console.log("Value changed to: " + text);
+            _Instance.changed();
             _Instance.working_model.name = text;
         });
         this.edit_properties_pane.appendChild(this.animation_name.el);
@@ -43,12 +43,13 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 
         // create the image selection dropdown
         this.image_selected = new mnLabeledDropdown(language.strings.using_image, function(p) {
-            console.log("Value changed to: " + p);
+            _Instance.setImageByName(p);
         });
         for (let i=0; i<image_assets.length; i++) {
             let img = image_assets[i];
             this.image_selected.addOption(img.name, img.name);
         }
+        this.image_selected.select(this.model.image.name);
         this.edit_properties_pane.appendChild(this.image_selected.el); 
         
         this.seek_widget = new mnSeekWidget(function(pos) {
@@ -90,7 +91,6 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 
         this.savedel.enable(false);
 
-        this.discard();
         console.dir(this.working_model);
     }
     onBlur(new_destination) {
@@ -120,6 +120,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.working_model.name = this.model.name;
         this.working_model.image = this.model.image;
         this.animation_name.setValue(this.model.name);
+        this.image_selected.select(this.model.image.name);
+        this.setImage(this.model.image);
         this.putAnimationBoxes();
         this.savedel.enable(false);
         this.update();
@@ -147,6 +149,7 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             this.addEmptyFrame(this.current_frame);
             this.current_frame++;    
         }
+        this.changed();
         this.update();
     }
     minusFrame() {
@@ -156,11 +159,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
             this.addEmptyFrame(0);
             this.current_frame = 0;
         }
+        this.changed();
         this.update();
-        console.dir({
-            model: this.working_model,
-            current_frame: this.current_frame
-        });
     }
     update() {
         let mp = this.working_model.frames.length-1;
@@ -208,5 +208,22 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.current_frame = pos;
         this.putAnimationBoxes();
         this.update();
+    }
+    setImage(image) {
+        this.working_model.image = image;
+        this.animation_display.setImage(image);
+        this.animation_display.realign();
+        this.view_selector.setImage(image);
+        this.view_selector.realign();
+
+    }
+    setImageByName(name) {
+        let image_assets = editor.getAssets('images');
+        for (var i=0; i<image_assets.length; i++) {
+            if (image_assets[i].name == name) {
+                this.setImage(image_assets[i]);
+                return;
+            }
+        }
     }
 }

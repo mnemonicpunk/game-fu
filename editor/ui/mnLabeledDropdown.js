@@ -19,14 +19,21 @@ class mnLabeledDropdown extends mnWidget {
             on_change_handler(_Instance.dropdown.value);
         });
     }
-    setValue(val) {
-        //this.text.value = val;
-    }
     addOption(name, option) {
         var o = document.createElement('option');
         o.innerHTML = name;
         o.value = option;
 
         this.dropdown.appendChild(o);
+    }
+    select(option) { 
+        let o = this.dropdown.querySelectorAll('option');
+        console.dir(o);
+        for (var i=0; i<o.length; i++) {
+            if (o[i].value == option) {
+                this.dropdown.selectedIndex = i;
+                return;
+            }
+        }
     }
 }
