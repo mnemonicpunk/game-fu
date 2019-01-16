@@ -4,6 +4,13 @@
 
         <link rel="stylesheet" type="text/css" href="editor/editor_ui.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        
+        <script src="../blockly/blockly_compressed.js"></script>
+        <script src="../blockly/blocks_compressed.js"></script>
+        <script src="../blockly/msg/js/en.js"></script>        
+        
+        <script src="./editor/blocks/blocks_position.js"></script>
+
         <script src="./editor/editor_lang.js"></script>
 
         <script src="./editor/ui/mnWidget.js"></script>
@@ -40,6 +47,33 @@
         <script src="./editor/mnEditor.js"></script>        
     </head>
     <body>
-
+        <xml id="toolbox" style="display: none">
+            <category name="Position" colour="210">
+                <block type="position_set_x"></block>
+            </category>	
+            <category name="Aussehen" colour="230">
+            </category>
+            <category name="Klang" colour="290">
+            </category>
+            <category name="Zeichnen" colour="120">
+            </category>
+            <category name="Daten" colour="330">
+            </category>
+            <category name="Ereignisse" colour="20">
+            </category>
+            <category name="Steuerung" colour="0">
+                <block type="controls_if"></block>
+                <block type="controls_repeat_ext"></block>
+                <block type="logic_compare"></block>
+                <block type="math_number"></block>
+                <block type="math_arithmetic"></block>
+                <block type="text"></block>
+                <block type="text_print"></block>		
+            </category>
+            <category name="Sensoren" colour="180">
+            </category>
+            <category name="Logik" colour="71">
+            </category>
+        </xml>
     </body>
 </html>

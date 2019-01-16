@@ -2,13 +2,29 @@ body {
     padding: 0;
     margin: 0;
     font-family: segoe UI;
+
+    --gfe-bg-color: #222;
+    --gfe-text-color: #aaa;
+    --gfe-ui-color: #333;
+    --gfe-uiactive-color: #555;
+    --gfe-widget-color: #444;
+    --gfe-widgetactive-color: #666;
+
+    /*
+    --gfe-bg-color: #0B0C10;
+    --gfe-text-color: #fff;
+    --gfe-ui-color: #1F2833;
+    --gfe-uiactive-color: #66FCF1;
+    --gfe-widget-color: #45A29E;
+    --gfe-widgetactive-color: #66FCF1;
+    */
 }
 
 .editor_ui {
     width: 100%;
     height: 100%;
-    color: #aaa;
-    background: #222;
+    color: var(--gfe-text-color);
+    background: var(--gfe-bg-color);
 }
 
 .identity_widget {
@@ -75,8 +91,8 @@ body {
     left: 0px;
     width: 300px;
     height: 100%;
-    color: #aaa;
-    background: #333;
+    color: var(--gfe-text-color);
+    background: var(--gfe-ui-color);
 }
 
 .project_explorer_category {
@@ -93,7 +109,7 @@ body {
 
 .project_explorer_category_name:hover {
     cursor: pointer;
-    background: #555;
+    background: var(--gfe-uiactive-color);
 }
 
 .project_explorer_no_plus_button {
@@ -124,8 +140,8 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     border-top: 1px solid #000;
-    background: #444;
-    color: #fff;
+    background: var(--gfe-widget-color);
+    color: var(--gfe-text-color);
 }
 
 .project_explorer_item {
@@ -135,7 +151,7 @@ body {
 
 .project_explorer_item:hover {
     cursor: pointer;
-    background: #555;
+    background: var(--gfe-uiactive-color);
     border-radius: 5px;
 }
 
@@ -156,7 +172,7 @@ body {
     width: calc(70% - 40px);
     height: calc(100% - 40px);
     padding: 10px;
-    background: #444;
+    background: var(--gfe-ui-color)
 }
 
 .edit_properties_pane {
@@ -179,8 +195,8 @@ body {
     display: inline-block;
     width: calc(33% - 10px);
     height: 44px;
-    background: #555;
-    color: #fff;
+    background: var(--gfe-widget-color);
+    color: var(--gfe-text-color);
     text-align: center;
     line-height: 44px;
     border-radius: 5px;
@@ -190,7 +206,7 @@ body {
 
 .savedel_bar_button:hover {
     cursor: pointer;
-    background: #888;
+    background: var(--gfe-uiactive-color);
 }
 
 .savedel_bar_button_disabled {
@@ -204,13 +220,13 @@ body {
 }
 
 .labeled_textbox_label {
-    color: #aaa;
+    color: var(--gfe-text-color);
 }
 
 .labeled_textbox_text {
     color: #fff;
     width: calc(100% - 20px);
-    background: #333;
+    background: var(--gfe-ui-color);
     padding: 10px;
     margin-top: 10px;
     border: none;
@@ -218,13 +234,13 @@ body {
 }
 
 .labeled_dropdown_label {
-    color: #aaa;
+    color: var(--gfe-text-color);
 }
 
 .labeled_dropdown_select {
     color: #fff;
     width: calc(100% - 20px);
-    background: #333;
+    background: var(--gfe-ui-color);
     padding: 10px;
     margin-top: 10px;
     border: none;
@@ -245,7 +261,7 @@ body {
     outline: none;
     width: calc(100% - 22px);
     height: 20px;
-    background: #333;
+    background: var(--gfe-ui-color);
     border: 1px solid #444;
     
     border-radius: 10px;
@@ -257,7 +273,7 @@ body {
 
     width: 45px;
     height: 45px;
-    background: #555;
+    background: var(--gfe-uiactive-color);
 
     border-radius: 10px;
     border-bottom-left-radius: 40px;
@@ -286,8 +302,8 @@ body {
 
 .editor_modal_button {
     padding: 20px;
-    background: #555;
-    color: #fff;
+    background: var(--gfe-ui-color);
+    color: var(--gfe-text-color);
     display: inline;
     margin: 10px;
     border-radius: 5px;
@@ -295,7 +311,7 @@ body {
 
 .editor_modal_button:hover {
     cursor: pointer;
-    background: #888;
+    background: var(--gfe-uiactive-color);
 }
 
 .frame_tools {
@@ -310,11 +326,11 @@ body {
     margin: 5px;
     width: calc(50% - 20px);
     text-align: center;
-    background: #444;
+    background: var(--gfe-ui-color);
     border-radius: 5px;
 }
 
 .frame_tools_button:hover {
     cursor: pointer;
-    background: #555;
+    background: var(--gfe-uiactive-color);
 }

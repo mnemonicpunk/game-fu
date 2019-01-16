@@ -1,10 +1,29 @@
 class mnObjectEditor extends mnSplitPaneEditor {
-    constructor(obj) {
-        super();
-        this.obj = obj;
+    constructor(model) {
+        super(model);
+        var _Instance = this;
+
+        this.obj = model;
 
         let object_assets = editor.getAssets('objects');
         let animation_assets = editor.getAssets('animations');
+
+        // create the blockly container
+        this.blocks_frame = document.createElement('div');
+        this.blocks_frame.style = "width: 100%; height: 100%;";
+        this.edit_main_pane.appendChild(this.blocks_frame);
+
+        this.blocks_container = document.createElement('div');
+        this.blocks_container.style = "position: absolute;";
+        this.edit_main_pane.appendChild(this.blocks_container);
+
+        this.blocks_toolbox = '<xml>';
+        this.blocks_toolbox += '  <block type="controls_if"></block>';
+        this.blocks_toolbox += '  <block type="controls_whileUntil"></block>';
+        this.blocks_toolbox += '</xml>';
+
+        this.blocks_workspace = null;
+        this.blockly_injected = false;
 
         // create the name textbox
         this.obj_name = new mnLabeledTextbox(language.strings.object_name, function(text) {
@@ -33,6 +52,26 @@ class mnObjectEditor extends mnSplitPaneEditor {
             let anim = animation_assets[i];
             this.obj_animation.addOption(anim.name, anim.name);
         }
-        this.edit_properties_pane.appendChild(this.obj_animation.el);        
+        this.edit_properties_pane.appendChild(this.obj_animation.el);  
+        
+        window.addEventListener('resize', function(e) {
+            _Instance.injectBlockly();
+            _Instance.resizeBlockly(e);
+        });        
+    }
+    injectBlockly() {
+        if (!this.blockly_injected) {
+            this.blocks_workspace = Blockly.inject(this.blocks_container, { toolbox: document.getElementById('toolbox') });
+            this.resizeBlockly();
+            Blockly.svgResize(this.blocks_workspace);
+            this.blockly_injected = true;
+        }
+    }
+    resizeBlockly() {
+        this.blocks_container.style.left = (this.blocks_frame.offsetLeft) + 'px';
+        this.blocks_container.style.top = (this.blocks_frame.offsetTop) + 'px';
+        this.blocks_container.style.width = this.blocks_frame.offsetWidth + 'px';
+        this.blocks_container.style.height = this.blocks_frame.offsetHeight + 'px';
+        Blockly.svgResize(this.blocks_workspace);
     }
 }
