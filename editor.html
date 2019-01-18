@@ -7,9 +7,11 @@
         
         <script src="../blockly/blockly_compressed.js"></script>
         <script src="../blockly/blocks_compressed.js"></script>
+        <script src="../blockly/javascript_compressed.js"></script>
         <script src="../blockly/msg/js/en.js"></script>        
         
         <script src="./editor/blocks/blocks_position.js"></script>
+        <script src="./editor/blocks/blocks_data.js"></script>
 
         <script src="./editor/editor_lang.js"></script>
 
@@ -50,18 +52,23 @@
         <xml id="toolbox" style="display: none">
             <category name="Position" colour="210">
                 <block type="position_set_x"></block>
+                <block type="position_set_y"></block>
+                <block type="position_get_x"></block>
+                <block type="position_get_y"></block>
             </category>	
-            <category name="Aussehen" colour="230">
+            <category name="Appearance" colour="230">
             </category>
-            <category name="Klang" colour="290">
+            <category name="Sound" colour="290">
             </category>
-            <category name="Zeichnen" colour="120">
+            <category name="Drawing" colour="120">
             </category>
-            <category name="Daten" colour="330">
+            <category name="Data" colour="330">
+                <block type="data_set_local_number"></block>
+                <block type="data_set_local_string"></block>
             </category>
-            <category name="Ereignisse" colour="20">
+            <category name="Events" colour="20">
             </category>
-            <category name="Steuerung" colour="0">
+            <category name="Control" colour="0">
                 <block type="controls_if"></block>
                 <block type="controls_repeat_ext"></block>
                 <block type="logic_compare"></block>
@@ -70,9 +77,9 @@
                 <block type="text"></block>
                 <block type="text_print"></block>		
             </category>
-            <category name="Sensoren" colour="180">
+            <category name="Sensors" colour="180">
             </category>
-            <category name="Logik" colour="71">
+            <category name="Logic" colour="71">
             </category>
         </xml>
     </body>

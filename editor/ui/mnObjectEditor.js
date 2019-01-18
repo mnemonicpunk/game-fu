@@ -65,6 +65,11 @@ class mnObjectEditor extends mnSplitPaneEditor {
             this.resizeBlockly();
             Blockly.svgResize(this.blocks_workspace);
             this.blockly_injected = true;
+
+            var _Instance = this;
+            this.blocks_workspace.addChangeListener(function() {
+                console.dir(Blockly.JavaScript.workspaceToCode(_Instance.blocks_workspace));
+            });
         }
     }
     resizeBlockly() {
