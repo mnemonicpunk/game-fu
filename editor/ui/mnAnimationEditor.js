@@ -85,7 +85,7 @@ class mnAnimationEditor extends mnSplitPaneEditor {
 
         window.addEventListener('resize', function() {
             // TO-DO: De-uglify the padding subtraction
-            _Instance.animation_display.resize(_Instance.edit_main_pane.clientWidth - 20, _Instance.edit_main_pane.clientHeight - 20);
+            _Instance.animation_display.resize(_Instance.edit_main_pane.clientWidth, _Instance.edit_main_pane.clientHeight);
             _Instance.view_selector.resize(_Instance.edit_properties_pane.clientWidth - 20, _Instance.edit_properties_pane.clientWidth - 20);
         });
 

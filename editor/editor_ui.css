@@ -167,11 +167,8 @@ body {
 
 .edit_main_pane {
     position: absolute;
-    padding: 10px;
-    margin: 10px;
-    width: calc(70% - 40px);
-    height: calc(100% - 40px);
-    padding: 10px;
+    width: 70%;
+    height: 100%;
     background: var(--gfe-ui-color)
 }
 
@@ -179,29 +176,22 @@ body {
     position: absolute;
     left: 70%;
     top: 0;
-    padding: 10px;
-    margin: 10px;
-    width: calc(30% - 40px);
-    height: calc(100% - 40px);
+    width: calc(30% - 20px);
+    height: calc(100% - 20px);
     padding: 10px;
 }
 
 .savedel_bar {
-    height: 44px;
-    margin-bottom: 40px;
+    height: 64px;
 }
 
 .savedel_bar_button {
     display: inline-block;
-    width: calc(33% - 10px);
+    width: 33%;
     height: 44px;
-    background: var(--gfe-widget-color);
     color: var(--gfe-text-color);
     text-align: center;
     line-height: 44px;
-    border-radius: 5px;
-
-    margin: 5px;
 }
 
 .savedel_bar_button:hover {
@@ -248,9 +238,8 @@ body {
 }
 
 .seek_widget {
-    margin-top: 25px;
     width: 100%;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
 }
 
 .seek_slider {
@@ -260,7 +249,7 @@ body {
     appearance: none;
     outline: none;
     width: calc(100% - 22px);
-    height: 20px;
+    height: 10px;
     background: var(--gfe-ui-color);
     border: 1px solid #444;
     
@@ -271,13 +260,10 @@ body {
     -webkit-appearance: none;
     appearance: none;
 
-    width: 45px;
-    height: 45px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
     background: var(--gfe-uiactive-color);
-
-    border-radius: 10px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
 }
 
 .view_selector {
