@@ -5,6 +5,8 @@ Blockly.Blocks['position_set_x'] = {
             "args0": [
                 { 'type': 'input_value', 'name': 'XPOS', 'check': 'Number' }
             ],
+            "previousStatement": null,
+            "nextStatement": null,            
             "inputsInline": true,
             "colour": 210
         });
@@ -17,6 +19,8 @@ Blockly.Blocks['position_set_y'] = {
             "args0": [
                 { 'type': 'input_value', 'name': 'YPOS', 'check': 'Number' }
             ],
+            "previousStatement": null,
+            "nextStatement": null,
             "inputsInline": true,
             "colour": 210
         });

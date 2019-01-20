@@ -51,8 +51,20 @@
     <body>
         <xml id="toolbox" style="display: none">
             <category name="Position" colour="210">
-                <block type="position_set_x"></block>
-                <block type="position_set_y"></block>
+                <block type="position_set_x">
+                    <value name="XPOS">
+                        <block type="math_number">
+                            <field name="NUM">0</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="position_set_y">
+                    <value name="YPOS">
+                        <block type="math_number">
+                            <field name="NUM">0</field>
+                        </block>
+                    </value>
+                </block>
                 <block type="position_get_x"></block>
                 <block type="position_get_y"></block>
             </category>	
@@ -63,8 +75,30 @@
             <category name="Drawing" colour="120">
             </category>
             <category name="Data" colour="330">
-                <block type="data_set_local_number"></block>
-                <block type="data_set_local_string"></block>
+                <block type="data_set_local_number">
+                    <value name="VARNAME">
+                        <block type="text">
+                            <field name="TEXT"></field>
+                        </block>
+                    </value>
+                    <value name="VARVALUE">
+                        <block type="math_number">
+                            <field name="NUM">0</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="data_set_local_string">
+                        <value name="VARNAME">
+                            <block type="text">
+                                <field name="TEXT"></field>
+                            </block>
+                        </value>
+                        <value name="VARVALUE">
+                            <block type="text">
+                                <field name="TEXT"></field>
+                            </block>
+                        </value>
+                </block>
             </category>
             <category name="Events" colour="20">
             </category>

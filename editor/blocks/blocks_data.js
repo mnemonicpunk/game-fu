@@ -6,6 +6,8 @@ Blockly.Blocks['data_set_local_number'] = {
                 { 'type': 'input_value', 'name': 'VARNAME', 'check': 'String' },
                 { 'type': 'input_value', 'name': 'VARVALUE', 'check': 'Number' }
             ],
+            "previousStatement": null,
+            "nextStatement": null,            
             "inputsInline": true,
             "colour": 330
         });
@@ -19,6 +21,8 @@ Blockly.Blocks['data_set_local_string'] = {
                 { 'type': 'input_value', 'name': 'VARNAME', 'check': 'String' },
                 { 'type': 'input_value', 'name': 'VARVALUE', 'check': 'String' }
             ],
+            "previousStatement": null,
+            "nextStatement": null,            
             "inputsInline": true,
             "colour": 330
         });
