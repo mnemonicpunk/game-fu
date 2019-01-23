@@ -39,6 +39,7 @@ class mnEditor {
 
         // put it into storage
         this.storage.saveProject(p);
+        console.dir(p);
     }
     load() {
 

@@ -46,7 +46,6 @@ class mnImageEditor extends mnSplitPaneEditor {
     save() {
         super.save();
         this.model.name = this.image_name.getValue();
-        console.dir(this.model);
         this.savedel.enable(false);
         editor.assetsChanged();
     }

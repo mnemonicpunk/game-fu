@@ -19,4 +19,7 @@ class mnBasicEditor extends mnWidget {
     onBlur(new_editor) {
         return new_editor;
     }
+    update() {
+        
+    }
 }

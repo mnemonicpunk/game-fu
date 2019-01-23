@@ -32,8 +32,6 @@ window.addEventListener('load', function() {
         y_offset: 0
     });
 
-    console.dir(test_animation);
-
     editor.save();    
 
     console.dir(this.localStorage.getItem('projects'));

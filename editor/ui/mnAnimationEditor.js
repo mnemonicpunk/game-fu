@@ -110,9 +110,8 @@ class mnAnimationEditor extends mnSplitPaneEditor {
         this.model.image = this.working_model.image;
         this.savedel.enable(false);     
         this.update();
+        editor.assetsChanged();
 
-        console.dir(this.model);
-        console.dir(editor.getAssets("animations"));
     }
     discard() {
         super.discard();
