@@ -12,6 +12,10 @@ class mnStorage {
         }        
 
     }
+    listProjects() {
+        var projects = JSON.parse(localStorage.getItem('projects') || []);
+        return projects;
+    }
     loadProject(name) {
         var projects = JSON.parse(localStorage.getItem('projects') || []);
         var project = {};

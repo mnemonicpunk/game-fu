@@ -1,15 +1,15 @@
 class mnProjectExplorer extends mnWidget {
-    constructor(editor) {
+    constructor(editorUI) {
         super();
 
         // not sure if we actually need to save this reference
-        this.editor = editor;
+        this.editor = editorUI;
 
         this.el = document.createElement('div');
         this.el.className = "project_explorer";
 
-        this.identity_widget = new mnIdentityWIdget();
-        this.el.appendChild(this.identity_widget.el);
+        this.project_widget = new mnProjectWidget();
+        this.el.appendChild(this.project_widget.el);
 
         this.categories = {
             project: new mnProjectExplorerCategory(language.strings.categories.project, null),
@@ -29,6 +29,14 @@ class mnProjectExplorer extends mnWidget {
         for (var i in this.categories) {
             this.el.appendChild(this.categories[i].el);
         }
+
+        this.project_widget.project_widget_open.addEventListener('click', function() {
+            console.dir(editor);
+            editorUI.setEditor(new mnOpenProject(editor.storage.listProjects()));
+        });
+        this.project_widget.project_widget_play.addEventListener('click', function() {
+            alert("yay");
+        });
     }
     addCategory(category) {
         this.categories.push(category);
