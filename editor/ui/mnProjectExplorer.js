@@ -22,7 +22,7 @@ class mnProjectExplorer extends mnWidget {
         };
 
         this.categories.project.addItem(language.strings.general_properties, function() {
-            alert("Opening general properties");
+            editorUI.setEditor(new mnProjectProperties());
         });
         this.categories.project.addItem(language.strings.graphics_settings, {});
 

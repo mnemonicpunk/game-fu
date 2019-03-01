@@ -1,7 +1,11 @@
 class mnSaveDelBar extends mnWidget {
-    constructor() {
+    constructor(parent_editor) {
         super();
+
+        var _Instance = this;
+
         this.el.className ="savedel_bar";
+        this.parent_editor = parent_editor;
 
         this.enabled = false;
 
@@ -21,6 +25,13 @@ class mnSaveDelBar extends mnWidget {
         this.el.appendChild(this.save_btn);     
         
         this.enable(false);
+
+        this.discard_btn.addEventListener('click', function() {
+            _Instance.parent_editor.discard();
+        });        
+        this.save_btn.addEventListener('click', function() {
+            _Instance.parent_editor.save();
+        });        
     }
     enable(state) {
         this.enabled = state;

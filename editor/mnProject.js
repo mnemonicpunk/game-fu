@@ -1,6 +1,6 @@
 class mnProject {
-    constructor() {
-        this.name = "";
+    constructor(my_data) {
+        this.name = "unnamed";
         this.safe_name = "";
         this.assets = {
             objects: [],
@@ -8,10 +8,17 @@ class mnProject {
             animations: [],
             images: []
         };
+
+        if (undefined !== my_data) {
+            this.name = my_data.meta.name;
+            this.safe_name = my_data.meta.safe_name;
+            this.assets = my_data.assets;
+        }
     }
     addAsset(category, asset) {
         if (this.assets[category]) {
             this.assets[category].push(asset);
+            return asset;
         }
     }
     generateSafeName(test_name) {

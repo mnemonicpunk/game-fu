@@ -55,7 +55,7 @@ body {
     background: var(--gfe-uiactive-color);
 }
 
-.open_project_title {
+.dialog_title {
     padding: 20px;
     font-size: 200%;
     height: 40px;

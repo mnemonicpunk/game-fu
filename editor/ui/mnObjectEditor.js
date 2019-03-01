@@ -27,13 +27,7 @@ class mnObjectEditor extends mnSplitPaneEditor {
         this.blockly_injected = false;
 
         // add the delete/save toolstrip
-        this.savedel = new mnSaveDelBar();
-        this.savedel.discard_btn.addEventListener('click', function() {
-            _Instance.discard();
-        });        
-        this.savedel.save_btn.addEventListener('click', function() {
-            _Instance.save();
-        });
+        this.savedel = new mnSaveDelBar(this);
         this.edit_properties_pane.appendChild(this.savedel.el);
 
         // create the name textbox
@@ -103,6 +97,7 @@ class mnObjectEditor extends mnSplitPaneEditor {
         this.model.code = this.working_model.code;
         this.savedel.enable(false);
         editor.assetsChanged();
+        editor.save();
     }
     discard() {
         super.discard();

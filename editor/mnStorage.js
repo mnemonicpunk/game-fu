@@ -7,31 +7,40 @@ class mnStorage {
 
         // we split the assets up into their own storage item
         // this allows us to lazy load them later on when we want to use cloud storage
-        if (!localStorage.getItem('assets')) {
-            localStorage.setItem('assets', {});
-        }        
+        // as such they don't require a governing localStorage key as they will have their own unique ones
 
     }
     listProjects() {
-        var projects = JSON.parse(localStorage.getItem('projects') || []);
-        return projects;
+        let projects = this._getProjects();
+        let p_data = [];
+
+        for (var i=0; i<projects.length; i++) {
+            p_data.push({
+                'name': projects[i].name,
+                'safe_name': projects[i].safe_name,
+            });
+        }
+
+        return p_data;
     }
     loadProject(name) {
-        var projects = JSON.parse(localStorage.getItem('projects') || []);
-        var project = {};
+        let projects = JSON.parse(localStorage.getItem('projects') || []);
+
         for (var i=0; i<projects.length; i++) {
-            var p = projects[i];
+            let p = projects[i];
             if (p.safe_name == name) {
-                project = {
+                let project = {
                     meta: p,
                     assets: this.loadAssets(name)
                 }
+                return new mnProject(project);
             }
         }
-        return project;
+        return new mnProject();
     }
-    saveProject(project) {
-        var projects = localStorage.getItem('projects') || [];
+    saveProject(save_project) {
+        var projects = this._getProjects();
+        let project = save_project.toData();
 
         // save assets separately
         this.saveAssets(project.meta.safe_name, project.assets);
@@ -44,15 +53,16 @@ class mnStorage {
             }
         }
         if (index == -1) {
-            // we didn't yet have it
-            projects.push(project.meta);
+            console.log("Project does not yet exist, adding at " + projects.length);
+            index = projects.length;
         } else {
-            // we already have it, overwrite
-            projects[i] = project.meta
+            console.log("Project found at index " + i);
         }
+        projects[index] = project.meta;
+        console.dir(projects);
 
         // now write the metadata back to our localstorage
-        localStorage.setItem('projects', JSON.stringify(projects));
+        this._setProjects(projects);
     }
     loadAssets(name) {
         const prefix = "_project_assets_";
@@ -70,5 +80,18 @@ class mnStorage {
         const prefix = "_project_assets_";
 
         localStorage.setItem(prefix + name, JSON.stringify(assets));
+        console.dir(JSON.parse(localStorage.getItem(prefix + name)));
+    }
+    _getProjects() {
+        let p = localStorage.getItem('projects') || [];
+        if (p.length <= 0) {
+            console.log("p.length <= 0");
+            return [];
+        } else {
+            return JSON.parse(p);
+        }
+    }
+    _setProjects(projects) {
+        localStorage.setItem('projects', JSON.stringify(projects));
     }
 }

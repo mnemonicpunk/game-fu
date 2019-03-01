@@ -8,13 +8,7 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.edit_main_pane.appendChild(this.image_display.el);
 
         // add the delete/save toolstrip
-        this.savedel = new mnSaveDelBar();
-        this.savedel.discard_btn.addEventListener('click', function() {
-            _Instance.discard();
-        });        
-        this.savedel.save_btn.addEventListener('click', function() {
-            _Instance.save();
-        });
+        this.savedel = new mnSaveDelBar(this);
         this.edit_properties_pane.appendChild(this.savedel.el);
 
         // now let's add the viewSelector
@@ -48,6 +42,7 @@ class mnImageEditor extends mnSplitPaneEditor {
         this.model.name = this.image_name.getValue();
         this.savedel.enable(false);
         editor.assetsChanged();
+        editor.save();
     }
     discard() {
         super.discard();

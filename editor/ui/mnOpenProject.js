@@ -3,8 +3,10 @@ class mnOpenProject extends mnBasicEditor {
         super(model);
         console.dir(model);
 
+        var _Instance = this;
+
         this.title = document.createElement('div');
-        this.title.className = "open_project_title";
+        this.title.className = "dialog_title";
         this.title.innerHTML = "Open Project";
         this.el.appendChild(this.title);
 
@@ -30,7 +32,12 @@ class mnOpenProject extends mnBasicEditor {
 
         for (var i=0; i<model.length; i++) {
             this.addListEntry(model[i]);
+            //console.dir(editor.storage.loadProject(model[i]).name);
         }
+
+        this.project_create_button.addEventListener('click', function() {
+            _Instance.createProject();
+        });
     }
     addListEntry(next_entry) {
         console.dir(next_entry);
@@ -39,5 +46,15 @@ class mnOpenProject extends mnBasicEditor {
         entry.innerHTML = next_entry.name;
 
         this.project_list.appendChild(entry);
+    }
+    createProject() {
+        let n = this.project_create_enter.value;
+        if (n == "") {
+            return;
+        }
+
+        
+
+        console.log(n);
     }
 }

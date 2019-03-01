@@ -22,6 +22,11 @@ class mnEditor {
             e.dataTransfer.clearData();
         });          
     }
+    setProject(p) {
+        this.project = p;
+        this.save();
+        this.assetsChanged();
+    }
     assetsChanged() {
         this.ui.assetsChanged(this.project.assets);
     }
@@ -34,12 +39,9 @@ class mnEditor {
         return this.project.assets[category];
     }
     save() {
-        // grab project in a saveable state
-        var p = this.project.toData();
-
+        console.dir("mnEditor.save()");
         // put it into storage
-        this.storage.saveProject(p);
-        console.dir(p);
+        this.storage.saveProject(this.project);
     }
     load() {
 

@@ -9,6 +9,8 @@ class mnEditorUI extends mnWidget {
 
         this.editor_view = new mnEditorView();
         this.el.appendChild(this.editor_view.el);      
+
+        this.setEditor(new mnProjectProperties());
     }
     setEditor(e) {
         this.editor_view.setEditor(e);
