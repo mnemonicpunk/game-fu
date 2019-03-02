@@ -28,7 +28,7 @@ class mnEditor {
         this.assetsChanged();
     }
     assetsChanged() {
-        this.ui.assetsChanged(this.project.assets);
+        this.ui.assetsChanged(this.project.assets, this.project.name);
     }
     addAsset(category, asset) {
         this.project.addAsset(category, asset);

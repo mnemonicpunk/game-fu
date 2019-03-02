@@ -6,5 +6,9 @@ class mnProjectProperties extends mnBasicEditor {
         this.title.className = "dialog_title";
         this.title.innerHTML = "Project Properties";
         this.el.appendChild(this.title);
+
+        this.list_container = document.createElement('div');
+        this.list_container.className = "pp_list_container";
+        this.el.appendChild(this.list_container);
     }
 }

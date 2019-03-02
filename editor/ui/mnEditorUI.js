@@ -72,7 +72,8 @@ class mnEditorUI extends mnWidget {
 
         pe.update();
     }
-    assetsChanged(assets) {
+    assetsChanged(assets, name) {
         this.updateProjectExplorer(assets);
+        this.project_explorer.project_widget.setName(name);
     }
 }

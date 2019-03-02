@@ -44,16 +44,19 @@ class mnOpenProject extends mnBasicEditor {
         let entry = document.createElement('div');
         entry.className = "open_project_entry";
         entry.innerHTML = next_entry.name;
+        entry.addEventListener('click', function() {
+            console.dir(next_entry);
+            editor.loadProject()
+        });
 
         this.project_list.appendChild(entry);
     }
     createProject() {
         let n = this.project_create_enter.value;
         if (n == "") {
+            console.log("Tried creating project with no name, aborting.");
             return;
         }
-
-        
 
         console.log(n);
     }

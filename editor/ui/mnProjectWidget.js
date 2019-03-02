@@ -22,6 +22,9 @@ class mnProjectWidget extends mnWidget {
         this.project_widget_play.innerHTML = "<i class=\"fas fa-play\"></i> Play";
         this.project_widget_actions.appendChild(this.project_widget_play);        
 
-        this.project_widget_name.innerHTML = "Project Name";
+        this.setName("[PROJECT]");
+    }
+    setName(n) {
+        this.project_widget_name.innerHTML = n;
     }
 }
