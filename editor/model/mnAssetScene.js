@@ -6,7 +6,7 @@ class mnAssetScene extends mnAsset {
         return {
             name: this.name,
             objects: []
-        }
+        };
     }
     fromJSON(json) {
         this.name = json.name;

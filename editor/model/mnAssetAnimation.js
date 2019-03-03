@@ -13,7 +13,7 @@ class mnAssetAnimation extends mnAsset {
             name: this.name,
             image: this.image,
             frames: this.frames
-        }
+        };
     }
     fromJSON(json) {
         this.name = json.name;

@@ -30,6 +30,7 @@ class mnEditor {
     loadProject(safe_name) {
         let p = this.storage.loadProject(safe_name);
         this.setProject(p);
+        this.ui.setEditor(new mnProjectProperties());
     }
     assetsChanged() {
         this.ui.assetsChanged(this.project.assets, this.project.name);

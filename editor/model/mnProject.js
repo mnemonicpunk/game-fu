@@ -57,7 +57,7 @@ class mnProject {
                     asset_class = mnAssetScene;
                     break;
                 case "animations":
-                    asset_class = mnAssetAnimation
+                    asset_class = mnAssetAnimation;
                     break;
                 case "images":
                     asset_class = mnAssetImage;
@@ -85,7 +85,7 @@ class mnProject {
         var meta = {
             name: this.name,
             safe_name: this.generateSafeName(this.name),
-        }
+        };
 
         var assets = {};
         for (let cat in this.assets) {

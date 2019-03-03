@@ -41,7 +41,7 @@ class mnStorage {
                 let project = {
                     meta: p,
                     assets: this.loadAssets(name)
-                }
+                };
                 return new mnProject(project);
             }
         }

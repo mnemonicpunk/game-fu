@@ -14,7 +14,7 @@ class mnAssetObject extends mnAsset {
             blocks_xml: this.blocks_xml,
             parent_obj: this.parent_obj,
             code: this.code
-        }
+        };
     }
     fromJSON(json) {
         this.name = json.name;
