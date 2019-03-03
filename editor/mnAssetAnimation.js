@@ -15,6 +15,10 @@ class mnAssetAnimation extends mnAsset {
             frames: this.frames
         }
     }
+    fromJSON(json) {
+        this.name = json.name;
+        this.image = json.image;
+    }
     addFrame(x, y, width, height, offset_x, offset_y) {
         this.frames.push({
 			'x': x,

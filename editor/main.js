@@ -25,7 +25,7 @@ var GENERATE_SAMPLE_PROJECT = function() {
         x_offset: 0,
         y_offset: 0
     });
-    sample_project.name="Das großartige Testprojekt";
+    sample_project.name="Testprojekt";
     return sample_project;
 }
 
@@ -36,4 +36,8 @@ window.addEventListener('load', function() {
 
     var p = GENERATE_SAMPLE_PROJECT();
     editor.setProject(p);
+
+    /*if (editor.storage.existsProject("Testprojekt")) {
+        editor.set
+    }*/
 });

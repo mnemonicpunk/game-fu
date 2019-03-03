@@ -10,9 +10,8 @@ class mnProject {
         };
 
         if (undefined !== my_data) {
-            this.name = my_data.meta.name;
-            this.safe_name = my_data.meta.safe_name;
-            this.assets = my_data.assets;
+            console.log("Generating project from data");
+            this.fromData(my_data);
         }
     }
     addAsset(category, asset) {
@@ -40,6 +39,47 @@ class mnProject {
 
         return n;
     }
+    fromData(data) {
+        console.dir(data);
+        this.name = data.meta.name;
+        this.safe_name = data.meta.safe_name;
+        //this.assets = my_data.assets;
+
+        let data_assets = {};
+        for (let cat in this.assets) {
+            let asset_class = null;
+            let asset_category = [];
+            switch (cat) {
+                case "objects":
+                    asset_class = mnAssetObject;
+                    break;
+                case "scenes":
+                    asset_class = mnAssetScene;
+                    break;
+                case "animations":
+                    asset_class = mnAssetAnimation
+                    break;
+                case "images":
+                    asset_class = mnAssetImage;
+                    break;
+            }
+
+            for (let i=0; i<data.assets[cat].length; i++) {
+                /*console.dir({
+                    'class': asset_class,
+                    'asset': data.assets[cat][i]
+                });*/
+
+                let next_asset = new asset_class();
+                next_asset.fromJSON(data.assets[cat][i]);
+                asset_category.push(next_asset);
+            }
+
+            data_assets[cat] = asset_category;
+        }
+        console.dir(data_assets);
+        this.assets = data_assets;
+    }
     toData() {
         // not much metadata here yet
         var meta = {
@@ -51,10 +91,15 @@ class mnProject {
         for (let cat in this.assets) {
             let a = this.assets[cat];
             let a_json = [];
+
             for (let i=0; i<a.length; i++) {
                 a_json.push(a[i].toJSON());
             }
             assets[cat] = a_json;
+
+            if (a_json == []) {
+                console.log("[NOTICE] Category " + cat + " had no assets to serialize.");
+            }
         }
 
         return {

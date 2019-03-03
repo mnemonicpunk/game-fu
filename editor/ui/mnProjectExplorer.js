@@ -31,7 +31,6 @@ class mnProjectExplorer extends mnWidget {
         }
 
         this.project_widget.project_widget_open.addEventListener('click', function() {
-            console.dir(editor);
             editorUI.setEditor(new mnOpenProject(editor.storage.listProjects()));
         });
         this.project_widget.project_widget_play.addEventListener('click', function() {

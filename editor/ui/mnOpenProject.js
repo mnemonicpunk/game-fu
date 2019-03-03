@@ -1,7 +1,6 @@
 class mnOpenProject extends mnBasicEditor {
     constructor(model) {
         super(model);
-        console.dir(model);
 
         var _Instance = this;
 
@@ -40,13 +39,11 @@ class mnOpenProject extends mnBasicEditor {
         });
     }
     addListEntry(next_entry) {
-        console.dir(next_entry);
         let entry = document.createElement('div');
         entry.className = "open_project_entry";
         entry.innerHTML = next_entry.name;
         entry.addEventListener('click', function() {
-            console.dir(next_entry);
-            editor.loadProject()
+            editor.loadProject(next_entry.safe_name);
         });
 
         this.project_list.appendChild(entry);

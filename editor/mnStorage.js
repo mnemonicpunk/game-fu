@@ -23,6 +23,15 @@ class mnStorage {
 
         return p_data;
     }
+    existsProject(name) {
+        var p = this.listProjects();
+        for (var i=0; i<p.length; i++) {
+            if (p[i].name == name) {
+                return true;
+            }
+        }
+        return false;
+    }
     loadProject(name) {
         let projects = JSON.parse(localStorage.getItem('projects') || []);
 
@@ -59,7 +68,6 @@ class mnStorage {
             console.log("Project found at index " + i);
         }
         projects[index] = project.meta;
-        console.dir(projects);
 
         // now write the metadata back to our localstorage
         this._setProjects(projects);
@@ -72,15 +80,14 @@ class mnStorage {
             console.log("Error: Attempted to load project assets that did not exist.");
             return {};
         }
+
         return assets;
     }
     saveAssets(name, assets) {
         // since assets can become quite chunky we save them separately as top-level items
         // this prefix will make sure we don't ever accidentally save over it with other localStorage data
         const prefix = "_project_assets_";
-
         localStorage.setItem(prefix + name, JSON.stringify(assets));
-        console.dir(JSON.parse(localStorage.getItem(prefix + name)));
     }
     _getProjects() {
         let p = localStorage.getItem('projects') || [];

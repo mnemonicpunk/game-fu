@@ -7,7 +7,7 @@ class mnAssetObject extends mnAsset {
         this.parent_obj = "";
         this.code = "";
     }
-    toData() {
+    toJSON() {
         return {
             name: this.name,
             anim: this.anim,
@@ -16,4 +16,12 @@ class mnAssetObject extends mnAsset {
             code: this.code
         }
     }
+    fromJSON(json) {
+        this.name = json.name;
+        this.anim = json.anim;
+        this.blocks_xml = json.blocks_xml;
+        this.parent_obj = json.parent_obj;
+        this.code = json.code;
+    }
+
 }

@@ -27,6 +27,10 @@ class mnEditor {
         this.save();
         this.assetsChanged();
     }
+    loadProject(safe_name) {
+        let p = this.storage.loadProject(safe_name);
+        this.setProject(p);
+    }
     assetsChanged() {
         this.ui.assetsChanged(this.project.assets, this.project.name);
     }
@@ -39,7 +43,6 @@ class mnEditor {
         return this.project.assets[category];
     }
     save() {
-        console.dir("mnEditor.save()");
         // put it into storage
         this.storage.saveProject(this.project);
     }

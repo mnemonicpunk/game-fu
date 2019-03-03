@@ -8,5 +8,9 @@ class mnAssetImage extends mnAsset {
             name: this.name,
             url: this.url
         }
-    }    
+    } 
+    fromJSON(json) {
+        this.name = json.name;
+        this.url = json.url;
+    }
 }
