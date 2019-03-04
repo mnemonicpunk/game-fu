@@ -9,6 +9,7 @@ class mnAssetObject extends mnAsset {
     }
     toJSON() {
         return {
+            asset_id: this.asset_id,
             name: this.name,
             anim: this.anim,
             blocks_xml: this.blocks_xml,
@@ -17,6 +18,7 @@ class mnAssetObject extends mnAsset {
         };
     }
     fromJSON(json) {
+        this.asset_id = json.asset_id;
         this.name = json.name;
         this.anim = json.anim;
         this.blocks_xml = json.blocks_xml;

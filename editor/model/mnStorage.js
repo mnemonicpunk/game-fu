@@ -42,6 +42,7 @@ class mnStorage {
                     meta: p,
                     assets: this.loadAssets(name)
                 };
+                console.dir(project);
                 return new mnProject(project);
             }
         }

@@ -4,6 +4,10 @@ class mnEditorUI extends mnWidget {
         this.el = document.createElement('div');
         this.el.className = "editor_ui";
     
+        //this.main_bar = document.createElement('div');
+        this.main_bar = new mnMainBar(this);
+        this.el.appendChild(this.main_bar.el);
+
         this.project_explorer = new mnProjectExplorer(this);
         this.el.appendChild(this.project_explorer.el);
 
@@ -72,8 +76,12 @@ class mnEditorUI extends mnWidget {
 
         pe.update();
     }
+    setName(name) {
+        //this.project_explorer.project_widget.setName(name);
+        this.main_bar.setName(name);
+    }
     assetsChanged(assets, name) {
         this.updateProjectExplorer(assets);
-        this.project_explorer.project_widget.setName(name);
+        this.setName(name);
     }
 }

@@ -13,7 +13,9 @@ class mnProjectExplorer extends mnWidget {
 
         this.categories = {
             project: new mnProjectExplorerCategory(language.strings.categories.project, null),
-            objects: new mnProjectExplorerCategory(language.strings.categories.objects, null),
+            objects: new mnProjectExplorerCategory(language.strings.categories.objects, function() {
+                alert("creating new object");
+            }),
             scenes: new mnProjectExplorerCategory(language.strings.categories.scenes, null),
             animations: new mnProjectExplorerCategory(language.strings.categories.animations, null),
             images: new mnProjectExplorerCategory(language.strings.categories.images, function() {

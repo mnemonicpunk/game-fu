@@ -10,12 +10,14 @@ class mnAssetAnimation extends mnAsset {
     }
     toJSON() {
         return {
+            asset_id: this.asset_id,
             name: this.name,
             image: this.image,
             frames: this.frames
         };
     }
     fromJSON(json) {
+        this.asset_id = json.asset_id;
         this.name = json.name;
         this.image = json.image;
     }

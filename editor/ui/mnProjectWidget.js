@@ -4,10 +4,6 @@ class mnProjectWidget extends mnWidget {
 
         this.el.className = "project_widget";
 
-        this.project_widget_name = document.createElement('div');
-        this.project_widget_name.className = "project_widget_name";
-        this.el.appendChild(this.project_widget_name);
-
         this.project_widget_actions = document.createElement('div');
         this.project_widget_actions.className = "project_widget_actions";
         this.el.appendChild(this.project_widget_actions);
@@ -22,9 +18,6 @@ class mnProjectWidget extends mnWidget {
         this.project_widget_play.innerHTML = "<i class=\"fas fa-play\"></i> Play";
         this.project_widget_actions.appendChild(this.project_widget_play);        
 
-        this.setName("[PROJECT]");
-    }
-    setName(n) {
-        this.project_widget_name.innerHTML = n;
+        //this.setName("[PROJECT]");
     }
 }

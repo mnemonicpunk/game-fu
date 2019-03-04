@@ -21,7 +21,19 @@ body {
     */
 }
 
+.main_bar {
+    position: absolute;
+    height: 44px;
+    width: calc(100% - 20px);
+    background: var(--gfe-bg-color);
+    line-height: 44px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .editor_ui {
+    position: absolute;
+    //top: 44px;
     width: 100%;
     height: 100%;
     color: var(--gfe-text-color);
@@ -114,10 +126,10 @@ body {
 
 .project_explorer {
     position: absolute;
-    top: 0px;
+    top:44px;
     left: 0px;
     width: 300px;
-    height: 100%;
+    height: calc(100% - 44px);
     color: var(--gfe-text-color);
     background: var(--gfe-ui-color);
 }
@@ -130,8 +142,8 @@ body {
 
 .project_explorer_category_name {
     padding: 10px;
-    height: 30px;
-    line-height: 30px;
+    height: 20px;
+    line-height: 20px;
 }
 
 .project_explorer_category_name:hover {
@@ -145,15 +157,15 @@ body {
 
 .project_explorer_plus_button {
     float: right;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     text-align: center;
 
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 2px;
+    padding-bottom: 4px;
 
     font-weight: bold;
-    line-height: 30px;
+    line-height: 20px;
 
     color: #666;
 }
@@ -163,31 +175,30 @@ body {
 }
 
 .project_explorer_category_content {
-    padding: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     border-top: 1px solid #000;
     background: var(--gfe-widget-color);
     color: var(--gfe-text-color);
 }
 
 .project_explorer_item {
-    padding: 10px;
-    
+    padding: 5px;
+    padding-left: 10px;
 }
 
 .project_explorer_item:hover {
     cursor: pointer;
     background: var(--gfe-uiactive-color);
-    border-radius: 5px;
 }
 
 .editor_view {
     position: absolute;
-    top: 0px;
+    top: 44px;
     left: 300px;
     width: calc(100% - 300px);
-    height: 100%;
+    height: calc(100% - 44px);
 
     color: #aaa;
 }

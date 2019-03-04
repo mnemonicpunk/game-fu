@@ -9,6 +9,13 @@ class mnProject {
             images: []
         };
 
+        this.prefix_table = {
+            'objects': 'obj',
+            'scenes': 'sce',
+            'animations': 'ani',
+            'images': 'img'
+        }
+
         if (undefined !== my_data) {
             console.log("Generating project from data");
             this.fromData(my_data);
@@ -16,9 +23,34 @@ class mnProject {
     }
     addAsset(category, asset) {
         if (this.assets[category]) {
+            this.uniqueID(category, asset);
             this.assets[category].push(asset);
             return asset;
         }
+    }
+    uniqueID(category, asset) {
+        let id = asset.asset_id;
+        let id_counter = 0;
+
+        if (id == null) {
+            id = this.prefix_table[category] + id_counter.toString();
+        }
+
+        while (this.getAssetByID(category, id)) {
+            id_counter++;
+            id = this.prefix_table[category] + id_counter.toString();
+        }
+
+        asset.asset_id = id;
+    }
+    getAssetByID(category, id) {
+        var a = this.assets[category];
+        for (var i=0; i<a.length; i++) {
+            if (a[i].asset_id == id) {
+                return a[i];
+            }
+        }
+        return null;
     }
     generateSafeName(test_name) {
         // this function sanitizes the chosen project name to something we know can be stored as a localStorage key

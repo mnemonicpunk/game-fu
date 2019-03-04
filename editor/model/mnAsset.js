@@ -1,5 +1,6 @@
 class mnAsset {
     constructor(name) {
+        this.asset_id = null;
         this.name = name;
     }
     toJSON() {
