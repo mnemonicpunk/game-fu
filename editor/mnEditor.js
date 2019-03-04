@@ -73,6 +73,19 @@ class mnEditor {
             counter++;
         }
     }
+    createAsset(category) {
+        let asset_classes = {
+            'objects': mnAssetObject,
+            'scenes': mnAssetScene,
+            'animations': mnAssetAnimation,
+            'images': mnAssetImage
+        }
+
+        let created_asset = new asset_classes[category]();
+        created_asset.name = this.createAssetName(category);
+        console.dir(created_asset);
+        this.addAsset(category, created_asset);
+    }
     createAssetFromFile(f) {
         var _Instance = this;
 

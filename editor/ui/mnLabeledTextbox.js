@@ -22,6 +22,12 @@ class mnLabeledTextbox extends mnWidget {
             }
             on_change_handler(_Instance.text.value);
         });
+        this.text.addEventListener('input', function() {
+            if (on_change_handler == undefined) {
+                return;
+            }
+            on_change_handler(_Instance.text.value);
+        });        
     }
     setValue(val) {
         this.text.value = val;

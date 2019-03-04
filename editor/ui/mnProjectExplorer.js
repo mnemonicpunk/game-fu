@@ -14,10 +14,14 @@ class mnProjectExplorer extends mnWidget {
         this.categories = {
             project: new mnProjectExplorerCategory(language.strings.categories.project, null),
             objects: new mnProjectExplorerCategory(language.strings.categories.objects, function() {
-                alert("creating new object");
+                editor.createAsset('objects');
             }),
-            scenes: new mnProjectExplorerCategory(language.strings.categories.scenes, null),
-            animations: new mnProjectExplorerCategory(language.strings.categories.animations, null),
+            scenes: new mnProjectExplorerCategory(language.strings.categories.scenes, function() {
+                editor.createAsset('scenes');
+            }),
+            animations: new mnProjectExplorerCategory(language.strings.categories.animations, function() {
+                editor.createAsset('animations');
+            }),
             images: new mnProjectExplorerCategory(language.strings.categories.images, function() {
                 alert("Please create new images by dragging the files onto the editor.");
             })        
