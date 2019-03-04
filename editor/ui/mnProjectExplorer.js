@@ -19,7 +19,7 @@ class mnProjectExplorer extends mnWidget {
             scenes: new mnProjectExplorerCategory(language.strings.categories.scenes, null),
             animations: new mnProjectExplorerCategory(language.strings.categories.animations, null),
             images: new mnProjectExplorerCategory(language.strings.categories.images, function() {
-                editor.createNewImage();
+                alert("Please create new images by dragging the files onto the editor.");
             })        
         };
 

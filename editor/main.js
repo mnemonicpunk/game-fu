@@ -35,9 +35,13 @@ window.addEventListener('load', function() {
     document.body.appendChild(editor.ui.el);
 
     var p = GENERATE_SAMPLE_PROJECT();
-    editor.setProject(p);
+    //editor.setProject(p);
 
-    /*if (editor.storage.existsProject("Testprojekt")) {
-        editor.set
-    }*/
+    if (!editor.storage.existsProject("Testprojekt")) {
+        console.log("Sample project not found, creating...");
+        editor.setProject(p);
+    } else {
+        console.log("Sample project found.");
+        editor.loadProject("testprojekt");
+    }
 });
